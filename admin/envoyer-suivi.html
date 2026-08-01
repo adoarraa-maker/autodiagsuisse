@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Envoyer un n° de suivi | AutoDiag Suisse</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+  <div class="top-banner">
+    <span>🚗 Outil interne — envoi du numéro de suivi La Poste Suisse</span>
+  </div>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="../index.html">
+        <div class="brand-mark" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><path d="M5 17a2 2 0 1 0 0-4 2 2 0 0 0 0 4zm14 0a2 2 0 1 0 0-4 2 2 0 0 0 0 4zM7.5 15h9l1.2-3.5H6.3L7.5 15zM4 11l1.5-4h13L20 11H4zm2.5-5.5L5.2 9h13.6l-1.3-3.5H6.5z"/></svg>
+        </div>
+        <div class="brand-text">
+          <div class="brand-name">AutoDiag <span>Suisse</span></div>
+          <div class="brand-tag">Admin · Suivi</div>
+        </div>
+      </a>
+    </div>
+  </header>
+
+  <main>
+    <section class="success-page">
+      <div class="container" style="max-width:720px">
+        <div class="success-card admin-card">
+          <h1 class="success-title" style="font-size:1.8rem">Envoyer le suivi de colis</h1>
+          <p class="success-lead">
+            Remplissez le formulaire puis ouvrez votre client e-mail prérempli, ou copiez le texte.
+          </p>
+
+          <form id="tracking-form" class="admin-form">
+            <label>
+              E-mail du client
+              <input type="email" id="client-email" required placeholder="client@email.ch" autocomplete="email">
+            </label>
+            <label>
+              Prénom du client
+              <input type="text" id="client-name" required placeholder="Alex" autocomplete="given-name">
+            </label>
+            <label>
+              N° de suivi La Poste Suisse
+              <input type="text" id="tracking-number" required placeholder="99.00.123456.78901234" autocomplete="off">
+            </label>
+            <label>
+              Produit
+              <input type="text" id="product-name" value="Scanner LAUNCH CRP123E V3.0 Elite">
+            </label>
+
+            <div class="admin-actions">
+              <button type="submit" class="checkout-btn">Ouvrir l’e-mail (mailto)</button>
+              <button type="button" class="btn-secondary" id="copy-btn">Copier le message</button>
+            </div>
+          </form>
+
+          <p class="success-help" id="admin-status" role="status" aria-live="polite"></p>
+
+          <details class="admin-preview">
+            <summary>Aperçu du message texte</summary>
+            <pre id="preview-text"></pre>
+          </details>
+
+          <p class="success-help">
+            Modèle HTML : <a href="../emails/suivi-colis.html">emails/suivi-colis.html</a> ·
+            Guide : <a href="../docs/CONFIRMATION-ET-SUIVI.md">docs/CONFIRMATION-ET-SUIVI.md</a>
+          </p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script src="../js/envoyer-suivi.js"></script>
+</body>
+</html>
