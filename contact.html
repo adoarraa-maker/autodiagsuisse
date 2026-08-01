@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Votre panier AutoDiag Suisse — finalisez votre commande de diagnostic automobile.">
-  <title>Panier | AutoDiag Suisse</title>
+  <meta name="description" content="Contactez AutoDiag Suisse — Meyrin.">
+  <title>Contact | AutoDiag Suisse</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -37,17 +37,10 @@
           <div class="brand-tag" data-i18n="brandTag">Diagnostic Pro</div>
         </div>
       </a>
-
       <div class="header-actions">
         <div class="lang-wrap" id="lang-wrap" aria-label="Langue"></div>
-
-        <a href="panier.html" class="cart-btn is-active" id="cart-btn" aria-label="Panier" aria-current="page">
-          <svg viewBox="0 0 24 24" aria-hidden="true">
-            <path d="M6 6h15l-1.5 9h-12z"/>
-            <path d="M6 6l-1-3H2"/>
-            <circle cx="9" cy="20" r="1.5"/>
-            <circle cx="18" cy="20" r="1.5"/>
-          </svg>
+        <a href="panier.html" class="cart-btn" id="cart-btn" aria-label="Panier">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6h15l-1.5 9h-12z"/><path d="M6 6l-1-3H2"/><circle cx="9" cy="20" r="1.5"/><circle cx="18" cy="20" r="1.5"/></svg>
           <span class="cart-label" data-i18n="cart">Panier</span>
           <span class="cart-count" id="cart-count" data-count="0">0</span>
         </a>
@@ -56,58 +49,22 @@
   </header>
 
   <main>
-    <section class="cart-page">
-      <div class="container">
-        <h1 class="cart-page-title" data-i18n="cartPageTitle">Votre panier</h1>
+    <section class="legal-page">
+      <div class="container legal-content">
+        <h1>Contact</h1>
+        <p class="legal-intro">Une question sur un produit, une commande ou le suivi de colis ? Écrivez-nous ou appelez-nous.</p>
 
-        <div id="cart-empty" class="cart-empty" hidden>
-          <p data-i18n="cartEmpty">Votre panier est vide.</p>
-          <a href="index.html" class="btn-secondary" data-i18n="continueShopping">Continuer vos achats</a>
-        </div>
-
-        <div id="cart-content" class="cart-layout" hidden>
-          <div class="cart-items-wrap">
-            <div class="cart-table-head" aria-hidden="true">
-              <span data-i18n="colProduct">Produit</span>
-              <span data-i18n="colPrice">Prix</span>
-              <span data-i18n="colQty">Qté</span>
-              <span data-i18n="colTotal">Total</span>
-            </div>
-            <ul id="cart-items" class="cart-items"></ul>
+        <div class="contact-card">
+          <p><strong>AutoDiag Suisse</strong></p>
+          <p>15G Rue de la Golette<br>1217 Meyrin, Suisse</p>
+          <p>
+            E-mail : <a href="mailto:adoarraa@gmail.com">adoarraa@gmail.com</a><br>
+            Téléphone : <a href="tel:+41765761672">+41 76 576 16 72</a>
+          </p>
+          <div class="contact-actions">
+            <a class="checkout-btn" href="mailto:adoarraa@gmail.com">Envoyer un e-mail</a>
+            <a class="btn-secondary" href="tel:+41765761672">Appeler</a>
           </div>
-
-          <aside class="cart-summary">
-            <h2 data-i18n="summaryTitle">Récapitulatif</h2>
-            <div class="summary-row">
-              <span data-i18n="subtotal">Sous-total</span>
-              <strong id="cart-subtotal">0.00 CHF</strong>
-            </div>
-            <div class="summary-row">
-              <span data-i18n="shipping">Livraison</span>
-              <strong data-i18n="shippingValue">Gratuite en Suisse</strong>
-            </div>
-            <div class="summary-row summary-total">
-              <span data-i18n="total">Total</span>
-              <strong id="cart-total">0.00 CHF</strong>
-            </div>
-            <a
-              href="https://buy.stripe.com/8x2fZh3OwcsU5wK60w2kw00"
-              class="checkout-btn"
-              id="checkout-btn"
-              data-i18n="checkout"
-              rel="noopener noreferrer"
-            >
-              Passer commande
-            </a>
-            <a href="index.html" class="link-back" data-i18n="continueShopping">Continuer vos achats</a>
-            <div class="payment-badges cart-pay">
-              <div class="payment-label" data-i18n="securePay">Paiement sécurisé</div>
-              <span class="pay-badge visa">VISA</span>
-              <span class="pay-badge mc"><span class="dot r"></span><span class="dot o"></span></span>
-              <span class="pay-badge twint">TWINT</span>
-              <span class="pay-badge apple">Apple Pay</span>
-            </div>
-          </aside>
         </div>
       </div>
     </section>
@@ -129,7 +86,7 @@
             <a href="mentions-legales.html">Mentions Légales</a>
             <a href="confidentialite.html">Politique de Confidentialité</a>
             <a href="cgv.html">Conditions Générales de Vente</a>
-            <a href="contact.html">Contact</a>
+            <a href="contact.html" aria-current="page">Contact</a>
           </nav>
         </div>
       </div>
@@ -139,11 +96,8 @@
     </div>
   </footer>
 
-  <div class="toast" id="toast" role="status" aria-live="polite"></div>
-
   <script src="js/cart.js"></script>
   <script src="js/i18n.js"></script>
   <script src="js/lang-menu.js"></script>
-  <script src="js/panier.js" defer></script>
 </body>
 </html>

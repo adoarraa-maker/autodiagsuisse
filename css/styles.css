@@ -840,14 +840,152 @@ button {
 .site-footer {
   border-top: 1px solid var(--border);
   background: #080a0d;
-  padding: 2rem 0;
-  text-align: center;
-  color: #c8d0dc;
-  font-size: 0.9rem;
+  padding: 2.75rem 0 1.5rem;
+  color: #d0d6e0;
+  font-size: 0.95rem;
 }
 
-.site-footer strong {
-  color: #f2f4f7;
+.footer-inner {
+  display: flex;
+  flex-direction: column;
+  gap: 1.75rem;
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 2rem 3rem;
+  align-items: start;
+}
+
+.footer-heading {
+  margin: 0 0 0.85rem;
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #ffffff;
+}
+
+.footer-line {
+  margin: 0 0 0.35rem;
+  color: #d5dae3;
+  line-height: 1.5;
+}
+
+.footer-line a {
+  color: #e8ecf4;
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: color 0.15s, border-color 0.15s;
+}
+
+.footer-line a:hover {
+  color: #ffffff;
+  border-bottom-color: rgba(255, 255, 255, 0.35);
+}
+
+.footer-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+}
+
+.footer-nav a {
+  color: #d5dae3;
+  text-decoration: none;
+  width: fit-content;
+  transition: color 0.15s;
+}
+
+.footer-nav a:hover,
+.footer-nav a[aria-current="page"] {
+  color: #ffffff;
+}
+
+.footer-bottom {
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  padding-top: 1.1rem;
+}
+
+.footer-bottom p {
+  margin: 0;
+  font-size: 0.85rem;
+  color: #b8c0ce;
+}
+
+/* Legal / contact pages */
+.legal-page {
+  padding: 2.5rem 0 4rem;
+}
+
+.legal-content {
+  max-width: 760px;
+}
+
+.legal-content h1 {
+  font-family: var(--font-display);
+  font-size: clamp(1.8rem, 3vw, 2.4rem);
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  margin: 0 0 1.5rem;
+  color: #fff;
+}
+
+.legal-content h2 {
+  font-size: 1.15rem;
+  margin: 1.75rem 0 0.65rem;
+  color: #fff;
+}
+
+.legal-content p,
+.legal-intro {
+  margin: 0 0 0.85rem;
+  color: #d5dae3;
+  line-height: 1.65;
+}
+
+.legal-content a {
+  color: #9db7ff;
+}
+
+.legal-content section {
+  margin-bottom: 0.5rem;
+}
+
+.contact-card {
+  background: #1e1e1e;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: var(--radius-lg);
+  padding: 1.5rem 1.35rem;
+  margin-top: 1.25rem;
+}
+
+.contact-card p {
+  margin: 0 0 0.85rem;
+  color: #e8ecf4;
+}
+
+.contact-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 1.25rem;
+}
+
+.contact-actions .checkout-btn,
+.contact-actions .btn-secondary {
+  width: auto;
+  margin: 0;
+  min-width: 160px;
+}
+
+@media (max-width: 700px) {
+  .footer-grid {
+    grid-template-columns: 1fr;
+    gap: 1.75rem;
+  }
 }
 
 /* —— Cart page —— */
