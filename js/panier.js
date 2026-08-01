@@ -110,8 +110,12 @@
 
     document.addEventListener("autodiag:lang-changed", render);
 
-    checkoutBtn?.addEventListener("click", () => {
-      showToast(AutoDiagI18n?.t("checkoutSoon") || "Paiement bientôt disponible.");
+    // Checkout is an <a> to Stripe — ensure empty cart cannot proceed
+    checkoutBtn?.addEventListener("click", (e) => {
+      if (!AutoDiagCart.getItems().length) {
+        e.preventDefault();
+        showToast(AutoDiagI18n?.t("cartEmpty") || "Votre panier est vide.");
+      }
     });
   }
 

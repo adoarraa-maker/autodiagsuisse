@@ -989,6 +989,9 @@ button {
 }
 
 .checkout-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 100%;
   margin-top: 1rem;
   padding: 1rem 1.25rem;
@@ -1001,6 +1004,7 @@ button {
   font-weight: 700;
   letter-spacing: 0.05em;
   text-transform: uppercase;
+  text-decoration: none;
   box-shadow: 0 10px 28px rgba(225, 6, 0, 0.35);
   transition: filter 0.2s, transform 0.15s;
 }
