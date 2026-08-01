@@ -238,17 +238,11 @@
       if (dict[key] != null) el.innerHTML = dict[key];
     });
 
-    const select = document.getElementById("lang-select");
-    if (select) select.value = code;
-
     document.dispatchEvent(new CustomEvent("autodiag:lang-changed", { detail: { lang: code } }));
   }
 
   function init() {
     apply(getLang());
-    document.getElementById("lang-select")?.addEventListener("change", (e) => {
-      apply(e.target.value);
-    });
   }
 
   if (document.readyState === "loading") {
