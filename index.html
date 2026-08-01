@@ -30,15 +30,18 @@
       </a>
 
       <div class="header-actions">
-        <label class="visually-hidden" for="lang-select" data-i18n="langLabel">Langue</label>
-        <select id="lang-select" class="lang-select" aria-label="Langue">
-          <option value="fr">FR</option>
-          <option value="de">DE</option>
-          <option value="it">IT</option>
-          <option value="en">EN</option>
-        </select>
+        <div class="lang-wrap">
+          <span class="lang-globe" aria-hidden="true">🌐</span>
+          <label class="visually-hidden" for="lang-select" data-i18n="langLabel">Langue</label>
+          <select id="lang-select" class="lang-select" aria-label="Langue">
+            <option value="fr">Français</option>
+            <option value="de">Deutsch</option>
+            <option value="it">Italiano</option>
+            <option value="en">English</option>
+          </select>
+        </div>
 
-        <button type="button" class="cart-btn" id="cart-btn" aria-label="Panier">
+        <a href="panier.html" class="cart-btn" id="cart-btn" aria-label="Panier">
           <svg viewBox="0 0 24 24" aria-hidden="true">
             <path d="M6 6h15l-1.5 9h-12z"/>
             <path d="M6 6l-1-3H2"/>
@@ -47,7 +50,7 @@
           </svg>
           <span class="cart-label" data-i18n="cart">Panier</span>
           <span class="cart-count" id="cart-count" data-count="0">0</span>
-        </button>
+        </a>
       </div>
     </div>
   </header>
@@ -60,21 +63,21 @@
             <span class="gallery-badge" data-i18n="badge">Best-seller</span>
             <img
               id="main-image"
-              src="images/scanner-1.png"
+              src="images/hoto%26.png"
               alt="LAUNCH CRP123E V3.0 Elite — scanner de diagnostic automobile"
               width="800"
               height="800"
             >
           </div>
           <div class="gallery-thumbs" role="tablist" aria-label="Galerie produit">
-            <button type="button" class="thumb is-active" data-src="images/scanner-1.png" aria-label="Vue produit 1" aria-selected="true">
-              <img src="images/scanner-1.png" alt="" width="160" height="160">
+            <button type="button" class="thumb is-active" data-src="images/hoto%26.png" aria-label="Vue produit 1" aria-selected="true">
+              <img src="images/hoto%26.png" alt="" width="160" height="160">
             </button>
-            <button type="button" class="thumb" data-src="images/scanner-2.png" aria-label="Vue produit 2" aria-selected="false">
-              <img src="images/scanner-2.png" alt="" width="160" height="160">
+            <button type="button" class="thumb" data-src="images/HOTO2.png" aria-label="Vue produit 2" aria-selected="false">
+              <img src="images/HOTO2.png" alt="" width="160" height="160">
             </button>
-            <button type="button" class="thumb" data-src="images/scanner-3.png" aria-label="Vue produit 3" aria-selected="false">
-              <img src="images/scanner-3.png" alt="" width="160" height="160">
+            <button type="button" class="thumb" data-src="images/hoto3.png" aria-label="Vue produit 3" aria-selected="false">
+              <img src="images/hoto3.png" alt="" width="160" height="160">
             </button>
           </div>
         </div>
@@ -83,7 +86,7 @@
           <nav class="breadcrumb" aria-label="Fil d'Ariane">
             <a href="index.html" data-i18n="home">Accueil</a> /
             <span data-i18n="category">Scanners OBD2</span> /
-            <span data-i18n="productShort">CRP123E V3.0</span>
+            <span>CRP123E V3.0</span>
           </nav>
 
           <h1 class="product-title" data-i18n="title">
@@ -91,16 +94,19 @@
           </h1>
 
           <div class="product-meta">
-            <div class="rating" aria-label="4.8 sur 5">
-              ★★★★★
-              <span>4.8 · <span data-i18n="reviews">128 avis</span></span>
+            <div class="rating" aria-label="4.9 sur 5">
+              <span class="stars">⭐⭐⭐⭐⭐</span>
+              <span><strong>4.9/5</strong> · <span data-i18n="reviews">basé sur 48 avis</span></span>
             </div>
             <div class="stock" data-i18n="stock">En stock — expédition sous 24h</div>
           </div>
 
           <div class="price-block">
-            <div class="price">169.90 <span class="price-currency">CHF</span></div>
-            <div class="price-note" data-i18n="taxNote">TVA incluse · Livraison CH</div>
+            <div class="price-row">
+              <div class="price">139.90 <span class="price-currency">CHF</span></div>
+              <s class="price-old" aria-label="Ancien prix">179.90 CHF</s>
+            </div>
+            <div class="price-note" data-i18n="taxNote">TVA incluse · Livraison Gratuite en Suisse</div>
           </div>
 
           <ul class="features">
@@ -111,22 +117,22 @@
               <span data-i18n="feature1"><strong>Compatible toutes marques</strong> — Universal OBD2</span>
             </li>
             <li>
-              <span class="feature-icon" aria-hidden="true">
+              <span class="feature-icon blue" aria-hidden="true">
                 <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
               </span>
-              <span data-i18n="feature2"><strong>4 systèmes</strong> : Moteur, ABS, Airbag (SRS), Transmission</span>
+              <span data-i18n="feature2"><strong>4 systèmes</strong> : Moteur, ABS (Freins), Airbag (SRS), Transmission</span>
             </li>
             <li>
               <span class="feature-icon" aria-hidden="true">
                 <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
               </span>
-              <span data-i18n="feature3"><strong>Écran tactile 5" Android</strong> — mises à jour gratuites à vie via Wi-Fi</span>
+              <span data-i18n="feature3"><strong>Écran tactile 5" Android</strong> — mises à jour gratuites à vie via Wi-Fi direct</span>
             </li>
             <li>
-              <span class="feature-icon" aria-hidden="true">
+              <span class="feature-icon blue" aria-hidden="true">
                 <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
               </span>
-              <span data-i18n="feature4"><strong>Réinitialisation des voyants</strong> : Vidange, Freins, SAS, Throttle</span>
+              <span data-i18n="feature4"><strong>Réinitialisation des voyants</strong> : Vidange, Freins, SAS, Papillon</span>
             </li>
           </ul>
 
@@ -140,7 +146,11 @@
               </div>
             </div>
 
-            <button type="button" class="add-to-cart" id="add-to-cart">
+            <button type="button" class="add-to-cart" id="add-to-cart"
+              data-id="launch-crp123e-v3-elite"
+              data-name="Scanner de Diagnostic Auto Professionnel LAUNCH CRP123E V3.0 Elite"
+              data-price="139.90"
+              data-image="images/hoto%26.png">
               <svg viewBox="0 0 24 24" aria-hidden="true">
                 <path d="M6 6h15l-1.5 9h-12z"/>
                 <path d="M6 6l-1-3H2"/>
@@ -156,15 +166,15 @@
               <span class="pay-badge mc" title="Mastercard">
                 <span class="dot r"></span><span class="dot o"></span>
               </span>
-              <span class="pay-badge apple" title="Apple Pay">Apple Pay</span>
               <span class="pay-badge twint" title="Twint">TWINT</span>
+              <span class="pay-badge apple" title="Apple Pay">Apple Pay</span>
             </div>
           </div>
 
           <div class="trust-row">
             <div class="trust-item">
-              <strong data-i18n="trust1Title">Livraison Express</strong>
-              <span data-i18n="trust1Text">Suisse & Liechtenstein</span>
+              <strong data-i18n="trust1Title">Livraison Gratuite</strong>
+              <span data-i18n="trust1Text">en Suisse</span>
             </div>
             <div class="trust-item">
               <strong data-i18n="trust2Title">Garantie 2 ans</strong>
@@ -188,6 +198,8 @@
 
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
+  <script src="js/cart.js"></script>
+  <script src="js/i18n.js"></script>
   <script src="js/app.js" defer></script>
 </body>
 </html>
