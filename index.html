@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="AutoDiag Suisse — Scanner de diagnostic automobile professionnel LAUNCH CRP123E V3.0 Elite. Livraison express en Suisse, garantie 2 ans.">
+  <title>AutoDiag Suisse | LAUNCH CRP123E V3.0 Elite</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <div class="top-banner">
+    <span data-i18n="banner">🚗 Spécialiste du Diagnostic Automobile en Suisse | Livraison Express | Garantie 2 ans</span>
+  </div>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="index.html" aria-label="AutoDiag Suisse — Accueil">
+        <div class="brand-mark" aria-hidden="true">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M5 17a2 2 0 1 0 0-4 2 2 0 0 0 0 4zm14 0a2 2 0 1 0 0-4 2 2 0 0 0 0 4zM7.5 15h9l1.2-3.5H6.3L7.5 15zM4 11l1.5-4h13L20 11H4zm2.5-5.5L5.2 9h13.6l-1.3-3.5H6.5z"/>
+          </svg>
+        </div>
+        <div class="brand-text">
+          <div class="brand-name">AutoDiag <span>Suisse</span></div>
+          <div class="brand-tag" data-i18n="brandTag">Diagnostic Pro</div>
+        </div>
+      </a>
+
+      <div class="header-actions">
+        <label class="visually-hidden" for="lang-select" data-i18n="langLabel">Langue</label>
+        <select id="lang-select" class="lang-select" aria-label="Langue">
+          <option value="fr">FR</option>
+          <option value="de">DE</option>
+          <option value="it">IT</option>
+          <option value="en">EN</option>
+        </select>
+
+        <button type="button" class="cart-btn" id="cart-btn" aria-label="Panier">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M6 6h15l-1.5 9h-12z"/>
+            <path d="M6 6l-1-3H2"/>
+            <circle cx="9" cy="20" r="1.5"/>
+            <circle cx="18" cy="20" r="1.5"/>
+          </svg>
+          <span class="cart-label" data-i18n="cart">Panier</span>
+          <span class="cart-count" id="cart-count" data-count="0">0</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="product">
+      <div class="container product-grid">
+        <div class="gallery">
+          <div class="gallery-main">
+            <span class="gallery-badge" data-i18n="badge">Best-seller</span>
+            <img
+              id="main-image"
+              src="images/scanner-1.png"
+              alt="LAUNCH CRP123E V3.0 Elite — scanner de diagnostic automobile"
+              width="800"
+              height="800"
+            >
+          </div>
+          <div class="gallery-thumbs" role="tablist" aria-label="Galerie produit">
+            <button type="button" class="thumb is-active" data-src="images/scanner-1.png" aria-label="Vue produit 1" aria-selected="true">
+              <img src="images/scanner-1.png" alt="" width="160" height="160">
+            </button>
+            <button type="button" class="thumb" data-src="images/scanner-2.png" aria-label="Vue produit 2" aria-selected="false">
+              <img src="images/scanner-2.png" alt="" width="160" height="160">
+            </button>
+            <button type="button" class="thumb" data-src="images/scanner-3.png" aria-label="Vue produit 3" aria-selected="false">
+              <img src="images/scanner-3.png" alt="" width="160" height="160">
+            </button>
+          </div>
+        </div>
+
+        <div class="product-info">
+          <nav class="breadcrumb" aria-label="Fil d'Ariane">
+            <a href="index.html" data-i18n="home">Accueil</a> /
+            <span data-i18n="category">Scanners OBD2</span> /
+            <span data-i18n="productShort">CRP123E V3.0</span>
+          </nav>
+
+          <h1 class="product-title" data-i18n="title">
+            Scanner de Diagnostic Auto Professionnel LAUNCH CRP123E V3.0 Elite
+          </h1>
+
+          <div class="product-meta">
+            <div class="rating" aria-label="4.8 sur 5">
+              ★★★★★
+              <span>4.8 · <span data-i18n="reviews">128 avis</span></span>
+            </div>
+            <div class="stock" data-i18n="stock">En stock — expédition sous 24h</div>
+          </div>
+
+          <div class="price-block">
+            <div class="price">169.90 <span class="price-currency">CHF</span></div>
+            <div class="price-note" data-i18n="taxNote">TVA incluse · Livraison CH</div>
+          </div>
+
+          <ul class="features">
+            <li>
+              <span class="feature-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+              </span>
+              <span data-i18n="feature1"><strong>Compatible toutes marques</strong> — Universal OBD2</span>
+            </li>
+            <li>
+              <span class="feature-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+              </span>
+              <span data-i18n="feature2"><strong>4 systèmes</strong> : Moteur, ABS, Airbag (SRS), Transmission</span>
+            </li>
+            <li>
+              <span class="feature-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+              </span>
+              <span data-i18n="feature3"><strong>Écran tactile 5" Android</strong> — mises à jour gratuites à vie via Wi-Fi</span>
+            </li>
+            <li>
+              <span class="feature-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+              </span>
+              <span data-i18n="feature4"><strong>Réinitialisation des voyants</strong> : Vidange, Freins, SAS, Throttle</span>
+            </li>
+          </ul>
+
+          <div class="purchase">
+            <div class="qty-row">
+              <span class="qty-label" data-i18n="qty">Quantité</span>
+              <div class="qty-control">
+                <button type="button" id="qty-minus" aria-label="Diminuer">−</button>
+                <input type="number" id="qty" value="1" min="1" max="99" aria-label="Quantité">
+                <button type="button" id="qty-plus" aria-label="Augmenter">+</button>
+              </div>
+            </div>
+
+            <button type="button" class="add-to-cart" id="add-to-cart">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M6 6h15l-1.5 9h-12z"/>
+                <path d="M6 6l-1-3H2"/>
+                <circle cx="9" cy="20" r="1.5"/>
+                <circle cx="18" cy="20" r="1.5"/>
+              </svg>
+              <span data-i18n="addToCart">Ajouter au panier</span>
+            </button>
+
+            <div class="payment-badges">
+              <div class="payment-label" data-i18n="securePay">Paiement sécurisé</div>
+              <span class="pay-badge visa" title="Visa">VISA</span>
+              <span class="pay-badge mc" title="Mastercard">
+                <span class="dot r"></span><span class="dot o"></span>
+              </span>
+              <span class="pay-badge apple" title="Apple Pay">Apple Pay</span>
+              <span class="pay-badge twint" title="Twint">TWINT</span>
+            </div>
+          </div>
+
+          <div class="trust-row">
+            <div class="trust-item">
+              <strong data-i18n="trust1Title">Livraison Express</strong>
+              <span data-i18n="trust1Text">Suisse & Liechtenstein</span>
+            </div>
+            <div class="trust-item">
+              <strong data-i18n="trust2Title">Garantie 2 ans</strong>
+              <span data-i18n="trust2Text">SAV francophone</span>
+            </div>
+            <div class="trust-item">
+              <strong data-i18n="trust3Title">Updates à vie</strong>
+              <span data-i18n="trust3Text">Via Wi-Fi gratuit</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p><strong>AutoDiag Suisse</strong> — <span data-i18n="footer">Spécialiste du diagnostic automobile professionnel</span></p>
+    </div>
+  </footer>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script src="js/app.js" defer></script>
+</body>
+</html>
