@@ -6,8 +6,8 @@
   --bg-muted: #242b36;
   --border: rgba(255, 255, 255, 0.08);
   --text: #f2f4f7;
-  --text-muted: #9aa3b2;
-  --text-soft: #6b7484;
+  --text-muted: #c5ccd8;
+  --text-soft: #b0b8c6;
   --accent: #e10600;
   --accent-hover: #ff1a14;
   --accent-soft: rgba(225, 6, 0, 0.14);
@@ -184,9 +184,10 @@ button {
 
 .brand-tag {
   font-size: 0.7rem;
-  color: var(--text-soft);
+  color: #e8ecf2;
   letter-spacing: 0.12em;
   text-transform: uppercase;
+  font-weight: 600;
 }
 
 .header-actions {
@@ -448,12 +449,12 @@ button {
 
 .breadcrumb {
   font-size: 0.85rem;
-  color: var(--text-soft);
+  color: #b8c0ce;
   margin-bottom: 1rem;
 }
 
 .breadcrumb a:hover {
-  color: var(--text-muted);
+  color: #f2f4f7;
 }
 
 .product-title {
@@ -718,8 +719,9 @@ button {
 .payment-label {
   width: 100%;
   font-size: 0.8rem;
-  color: var(--text-soft);
+  color: #d5dae3;
   margin-bottom: 0.15rem;
+  font-weight: 500;
 }
 
 .pay-badge {
@@ -799,13 +801,13 @@ button {
 .trust-item {
   text-align: center;
   font-size: 0.8rem;
-  color: var(--text-soft);
+  color: #c5ccd8;
   line-height: 1.35;
 }
 
 .trust-item strong {
   display: block;
-  color: var(--text-muted);
+  color: #f0f3f7;
   font-size: 0.85rem;
   margin-bottom: 0.15rem;
 }
@@ -840,12 +842,12 @@ button {
   background: #080a0d;
   padding: 2rem 0;
   text-align: center;
-  color: var(--text-soft);
+  color: #c8d0dc;
   font-size: 0.9rem;
 }
 
 .site-footer strong {
-  color: var(--text-muted);
+  color: #f2f4f7;
 }
 
 /* —— Cart page —— */
