@@ -61,24 +61,14 @@ Quand vous êtes prêts à automatiser :
    - [Postmark](https://postmarkapp.com)
 4. Envoyez le contenu de `emails/suivi-colis.html` en remplaçant `{{PRENOM}}`, `{{NUMERO_SUIVI}}`, `{{LIEN_SUIVI}}`, `{{PRODUIT}}`
 
-### Option C — Webhook Node (exemple futur)
+### Option C — Webhook Netlify (implémenté)
 
-```js
-// Pseudo-code — à héberger (Vercel / Cloudflare Workers / etc.)
-// Écoute checkout.session.completed → enregistre la commande
-// Un endpoint admin POST /send-tracking { email, tracking } envoie l’e-mail via Resend
+Le webhook Stripe + e-mail dropshipping est prêt dans ce dépôt :
 
-app.post('/webhooks/stripe', (req, res) => {
-  const event = stripe.webhooks.constructEvent(...);
-  if (event.type === 'checkout.session.completed') {
-    const session = event.data.object;
-    // saveOrder({ email: session.customer_details.email, ... })
-  }
-  res.json({ received: true });
-});
-```
+- Endpoint : `/api/stripe-webhook` (Netlify Function)
+- Guide complet : [`docs/WEBHOOK-DROPSHIPPING.md`](./WEBHOOK-DROPSHIPPING.md)
 
-Ce dépôt est actuellement **statique** : l’option A suffit pour démarrer sans serveur.
+Flux : paiement réussi → extraction adresse/produit → e-mail structuré (vous + fournisseur) via Resend.
 
 ---
 

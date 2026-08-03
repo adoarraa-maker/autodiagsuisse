@@ -1,0 +1,17 @@
+{
+  "name": "autodiag-suisse",
+  "version": "1.0.0",
+  "private": true,
+  "description": "AutoDiag Suisse — boutique statique + webhook Stripe (Netlify Functions)",
+  "scripts": {
+    "dev": "npx netlify-cli dev",
+    "build": "echo Site statique — pas de build frontend"
+  },
+  "dependencies": {
+    "resend": "^4.0.0",
+    "stripe": "^17.0.0"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
