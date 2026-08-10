@@ -12,11 +12,26 @@ function extractOrder(session, lineItems = []) {
     session.shipping_details ||
     session.collected_information?.shipping_details ||
     null;
-  const address = shipping?.address || customer.address || {};
 
   const name = shipping?.name || customer.name || "Client";
   const email = customer.email || session.customer_email || "";
-  const phone = customer.phone || shipping?.phone || "";
+  const phone =
+    customer.phone ||
+    shipping?.phone ||
+    session.customer_details?.phone ||
+    "";
+
+  // Adresse : livraison d’abord, sinon facturation (fallback)
+  const billing = customer.address || {};
+  const shipAddr = shipping?.address || {};
+  const address = {
+    line1: shipAddr.line1 || billing.line1 || "",
+    line2: shipAddr.line2 || billing.line2 || "",
+    postal_code: shipAddr.postal_code || billing.postal_code || "",
+    city: shipAddr.city || billing.city || "",
+    state: shipAddr.state || billing.state || "",
+    country: shipAddr.country || billing.country || "CH",
+  };
 
   const products = lineItems.map((item) => ({
     name: item.description || item.price?.nickname || "Produit",
@@ -43,12 +58,12 @@ function extractOrder(session, lineItems = []) {
     customer: { name, email, phone },
     shipping: {
       name,
-      line1: address.line1 || "",
-      line2: address.line2 || "",
-      postalCode: address.postal_code || "",
-      city: address.city || "",
-      state: address.state || "",
-      country: address.country || "CH",
+      line1: address.line1,
+      line2: address.line2,
+      postalCode: address.postal_code,
+      city: address.city,
+      state: address.state,
+      country: address.country,
     },
     products,
     total,

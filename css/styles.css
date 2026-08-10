@@ -1247,6 +1247,14 @@ button {
   transform: translateY(1px);
 }
 
+.checkout-btn:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+  filter: none;
+  transform: none;
+  box-shadow: none;
+}
+
 .link-back {
   display: block;
   text-align: center;
@@ -1575,6 +1583,28 @@ button {
     display: none;
   }
 
+  .brand-name {
+    font-size: 1.2rem;
+  }
+
+  .brand-flag {
+    width: 32px;
+    height: 32px;
+  }
+
+  .brand-mark {
+    width: 36px;
+    height: 36px;
+  }
+
+  .lang-btn-label {
+    display: none;
+  }
+
+  .lang-btn {
+    padding: 0.45rem 0.55rem;
+  }
+
   .cart-btn .cart-label {
     display: none;
   }
@@ -1589,5 +1619,13 @@ button {
 
   .add-to-cart {
     font-size: 1.15rem;
+  }
+
+  .header-actions {
+    gap: 0.45rem;
+  }
+
+  .container {
+    width: min(100% - 1.25rem, var(--max));
   }
 }
