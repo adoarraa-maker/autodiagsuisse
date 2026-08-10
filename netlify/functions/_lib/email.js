@@ -16,7 +16,9 @@ const {
 async function sendOrderEmails(order) {
   const apiKey = process.env.RESEND_API_KEY;
   const from = process.env.EMAIL_FROM;
-  const notifyTo = process.env.ORDER_NOTIFY_EMAIL;
+  // Défaut = e-mail public du site (évite une config oubliée sur Netlify)
+  const notifyTo =
+    process.env.ORDER_NOTIFY_EMAIL || "adoarraa@gmail.com";
   const supplierTo = process.env.SUPPLIER_EMAIL;
 
   if (!apiKey) {
@@ -40,6 +42,7 @@ async function sendOrderEmails(order) {
 
   const recipients = [...new Set([notifyTo, supplierTo].filter(Boolean))];
   const results = [];
+  const errors = [];
 
   for (const to of recipients) {
     const { data, error } = await resend.emails.send({
@@ -52,11 +55,17 @@ async function sendOrderEmails(order) {
     });
 
     if (error) {
-      throw new Error(
-        `Resend error (${to}): ${error.message || JSON.stringify(error)}`
-      );
+      errors.push({ to, message: error.message || JSON.stringify(error) });
+      console.error(`Resend error (${to}):`, error);
+      continue;
     }
     results.push({ to, id: data?.id });
+  }
+
+  if (!results.length) {
+    throw new Error(
+      `Resend: aucun e-mail envoyé — ${errors.map((e) => e.message).join("; ")}`
+    );
   }
 
   // Optionnel : e-mail client de confirmation simple
@@ -82,7 +91,7 @@ async function sendOrderEmails(order) {
       "Vous recevrez un e-mail avec le numéro de suivi La Poste dès l'expédition.",
       "",
       "AutoDiag Suisse",
-      "contact@autodiagsuisse.ch",
+      "adoarraa@gmail.com",
     ].join("\n");
 
     const { error } = await resend.emails.send({
@@ -100,7 +109,7 @@ async function sendOrderEmails(order) {
   }
 
   console.log("Adresse livrée:", formatAddressBlock(order));
-  return results;
+  return { results, errors };
 }
 
 /**

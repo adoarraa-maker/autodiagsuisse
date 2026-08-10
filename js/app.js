@@ -55,6 +55,10 @@
     qtyInput?.addEventListener("change", () => {
       qtyInput.value = clampQty(qtyInput.value);
     });
+    qtyInput?.addEventListener("input", () => {
+      if (qtyInput.value === "") return;
+      qtyInput.value = clampQty(qtyInput.value);
+    });
   }
 
   function initAddToCart() {

@@ -63,21 +63,23 @@
             <span class="gallery-badge" data-i18n="badge">Best-seller</span>
             <img
               id="main-image"
-              src="images/hoto%26.png"
+              src="images/hoto1.png"
               alt="LAUNCH CRP123E V3.0 Elite — scanner de diagnostic automobile"
               width="800"
               height="800"
+              fetchpriority="high"
+              decoding="async"
             >
           </div>
           <div class="gallery-thumbs" role="tablist" aria-label="Galerie produit">
-            <button type="button" class="thumb is-active" data-src="images/hoto%26.png" aria-label="Vue produit 1" aria-selected="true">
-              <img src="images/hoto%26.png" alt="" width="160" height="160">
+            <button type="button" class="thumb is-active" data-src="images/hoto1.png" aria-label="Vue produit 1" aria-selected="true">
+              <img src="images/hoto1.png" alt="" width="160" height="160" loading="lazy" decoding="async">
             </button>
             <button type="button" class="thumb" data-src="images/HOTO2.png" aria-label="Vue produit 2" aria-selected="false">
-              <img src="images/HOTO2.png" alt="" width="160" height="160">
+              <img src="images/HOTO2.png" alt="" width="160" height="160" loading="lazy" decoding="async">
             </button>
             <button type="button" class="thumb" data-src="images/hoto3.png" aria-label="Vue produit 3" aria-selected="false">
-              <img src="images/hoto3.png" alt="" width="160" height="160">
+              <img src="images/hoto3.png" alt="" width="160" height="160" loading="lazy" decoding="async">
             </button>
           </div>
         </div>
@@ -141,7 +143,7 @@
               <span class="qty-label" data-i18n="qty">Quantité</span>
               <div class="qty-control">
                 <button type="button" id="qty-minus" aria-label="Diminuer">−</button>
-                <input type="number" id="qty" value="1" min="1" max="99" aria-label="Quantité">
+                <input type="number" id="qty" value="1" min="1" max="99" aria-label="Quantité" inputmode="numeric">
                 <button type="button" id="qty-plus" aria-label="Augmenter">+</button>
               </div>
             </div>
@@ -150,7 +152,7 @@
               data-id="launch-crp123e-v3-elite"
               data-name="Scanner de Diagnostic Auto Professionnel LAUNCH CRP123E V3.0 Elite"
               data-price="139.90"
-              data-image="images/hoto%26.png">
+              data-image="images/hoto1.png">
               <svg viewBox="0 0 24 24" aria-hidden="true">
                 <path d="M6 6h15l-1.5 9h-12z"/>
                 <path d="M6 6l-1-3H2"/>

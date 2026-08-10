@@ -5,19 +5,46 @@
   "use strict";
 
   const STORAGE_KEY = "autodiag_cart";
+  const LEGACY_IMAGE_MAP = {
+    "images/hoto%26.png": "images/hoto1.png",
+    "images/hoto&.png": "images/hoto1.png",
+  };
+
+  function normalizeImage(image) {
+    const raw = String(image || "").trim();
+    if (LEGACY_IMAGE_MAP[raw]) return LEGACY_IMAGE_MAP[raw];
+    if (/^images\/[A-Za-z0-9._%-]+$/i.test(raw)) return raw;
+    return "images/hoto1.png";
+  }
+
+  function sanitizeItem(item) {
+    if (!item || typeof item !== "object") return null;
+    const id = String(item.id || "").trim();
+    if (!id) return null;
+
+    return {
+      id,
+      name: String(item.name || "Produit").slice(0, 200),
+      price: Math.max(0, Number(item.price) || 0),
+      image: normalizeImage(item.image),
+      qty: Math.min(99, Math.max(1, Number(item.qty) || 1)),
+    };
+  }
 
   function read() {
     try {
       const raw = localStorage.getItem(STORAGE_KEY);
       const data = raw ? JSON.parse(raw) : [];
-      return Array.isArray(data) ? data : [];
+      if (!Array.isArray(data)) return [];
+      return data.map(sanitizeItem).filter(Boolean);
     } catch {
       return [];
     }
   }
 
   function write(items) {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(items));
+    const clean = items.map(sanitizeItem).filter(Boolean);
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(clean));
     document.dispatchEvent(new CustomEvent("autodiag:cart-updated"));
   }
 
@@ -26,7 +53,10 @@
   }
 
   function subtotal(items) {
-    return items.reduce((sum, item) => sum + (Number(item.price) || 0) * (Number(item.qty) || 0), 0);
+    return items.reduce(
+      (sum, item) => sum + (Number(item.price) || 0) * (Number(item.qty) || 0),
+      0
+    );
   }
 
   const Cart = {
@@ -50,13 +80,15 @@
       if (existing) {
         existing.qty = Math.min(99, (Number(existing.qty) || 0) + amount);
       } else {
-        items.push({
+        const next = sanitizeItem({
           id: product.id,
           name: product.name,
-          price: Number(product.price),
+          price: product.price,
           image: product.image,
           qty: amount,
         });
+        if (!next) return items;
+        items.push(next);
       }
 
       write(items);

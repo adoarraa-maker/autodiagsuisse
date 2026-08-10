@@ -35,7 +35,7 @@
       ``,
       `Cordialement,`,
       `L'équipe AutoDiag Suisse`,
-      `contact@autodiagsuisse.ch`,
+      `adoarraa@gmail.com`,
     ].join("\n");
 
     return { email, subject, body, link, tracking };

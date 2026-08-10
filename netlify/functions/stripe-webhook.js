@@ -1,11 +1,12 @@
 /**
  * Webhook Stripe — checkout.session.completed
  *
- * Endpoint public (après déploiement Netlify) :
- *   https://VOTRE-SITE.netlify.app/api/stripe-webhook
+ * Après paiement (Checkout Session OU Payment Link) :
+ * 1) extrait adresse + produits
+ * 2) envoie l’e-mail de commande (Resend) vers ORDER_NOTIFY_EMAIL
  *
- * Configurez cet URL dans Stripe Dashboard → Developers → Webhooks
- * Événement à cocher : checkout.session.completed
+ * Endpoint : https://VOTRE-SITE/api/stripe-webhook
+ * Événement Stripe : checkout.session.completed
  */
 
 const Stripe = require("stripe");
@@ -14,10 +15,6 @@ const { sendOrderEmails, forwardToSupplierApi } = require("./_lib/email");
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY || "");
 
-/**
- * Netlify Functions (Node) — body peut être base64 si isBase64Encoded.
- * Stripe exige le corps brut (raw) pour vérifier la signature.
- */
 function getRawBody(event) {
   if (!event.body) return "";
   if (event.isBase64Encoded) {
@@ -77,11 +74,17 @@ exports.handler = async (event) => {
   }
 
   /** @type {import('stripe').Stripe.Checkout.Session} */
-  const session = stripeEvent.data.object;
+  const sessionRef = stripeEvent.data.object;
 
-  // Ne traiter que les paiements effectivement payés
-  if (session.payment_status !== "paid" && session.payment_status !== "no_payment_required") {
-    console.log("Session non payée, ignorée:", session.id, session.payment_status);
+  if (
+    sessionRef.payment_status !== "paid" &&
+    sessionRef.payment_status !== "no_payment_required"
+  ) {
+    console.log(
+      "Session non payée, ignorée:",
+      sessionRef.id,
+      sessionRef.payment_status
+    );
     return {
       statusCode: 200,
       body: JSON.stringify({ received: true, skipped: "unpaid" }),
@@ -89,15 +92,43 @@ exports.handler = async (event) => {
   }
 
   try {
-    const lineItems = await stripe.checkout.sessions.listLineItems(session.id, {
-      limit: 100,
+    // Recharger la session complète : le payload webhook peut omettre
+    // shipping_details / customer_details selon la version d’API.
+    const session = await stripe.checkout.sessions.retrieve(sessionRef.id, {
+      expand: ["line_items", "customer", "payment_intent"],
     });
 
-    const order = extractOrder(session, lineItems.data);
+    const lineItems =
+      session.line_items?.data ||
+      (
+        await stripe.checkout.sessions.listLineItems(session.id, {
+          limit: 100,
+        })
+      ).data;
+
+    const order = extractOrder(session, lineItems);
     console.log("Commande extraite:", order.sessionId, order.customer.email);
+    console.log("Adresse:", order.shipping.line1, order.shipping.city);
+
+    if (!order.shipping.line1 && !order.shipping.city) {
+      console.warn(
+        "Adresse de livraison vide — vérifier shipping sur Checkout / Payment Link"
+      );
+    }
 
     const emailResults = await sendOrderEmails(order);
-    const apiResult = await forwardToSupplierApi(order);
+
+    let apiResult = null;
+    let apiError = null;
+    try {
+      apiResult = await forwardToSupplierApi(order);
+    } catch (apiErr) {
+      apiError = apiErr.message || String(apiErr);
+      console.error(
+        "API fournisseur échouée (e-mails déjà envoyés):",
+        apiError
+      );
+    }
 
     return {
       statusCode: 200,
@@ -106,11 +137,14 @@ exports.handler = async (event) => {
         orderId: order.sessionId,
         emails: emailResults,
         supplierApi: apiResult,
+        supplierApiError: apiError,
+        hasShippingAddress: Boolean(
+          order.shipping.line1 || order.shipping.city
+        ),
       }),
     };
   } catch (err) {
     console.error("Erreur traitement commande:", err);
-    // 500 → Stripe retentera le webhook (important pour ne pas perdre une commande)
     return {
       statusCode: 500,
       body: JSON.stringify({
