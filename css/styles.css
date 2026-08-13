@@ -1378,12 +1378,13 @@ button {
 
 .cart-item img,
 .cart-drawer img,
+.cart-table img,
 .recommended-product img,
 .cart-cross-sell-card img,
 .cart-recommendation img {
-  max-width: 80px !important;
-  max-height: 80px !important;
-  width: auto !important;
+  max-width: 100px !important;
+  max-height: 100px !important;
+  width: 100px !important;
   height: auto !important;
   object-fit: contain !important;
   display: block;
