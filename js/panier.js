@@ -35,9 +35,13 @@
   const subtotalEl = document.getElementById("cart-subtotal");
   const totalEl = document.getElementById("cart-total");
   const checkoutBtn = document.getElementById("checkout-btn");
+  const checkoutBtnSticky = document.getElementById("checkout-btn-sticky");
+  const stickyCheckoutEl = document.getElementById("cart-sticky-checkout");
+  const stickyTotalEl = document.getElementById("cart-sticky-total");
   const toast = document.getElementById("toast");
   const crossSellEl = document.getElementById("cart-cross-sell");
   const crossSellItemsEl = document.getElementById("cart-cross-sell-items");
+  const checkoutButtons = [checkoutBtn, checkoutBtnSticky].filter(Boolean);
 
   function escapeHtml(value) {
     return String(value ?? "")
@@ -66,14 +70,20 @@
     showToast._t = setTimeout(() => toast.classList.remove("is-visible"), 3600);
   }
 
-  function setCheckoutLoading(loading) {
-    if (!checkoutBtn) return;
-    checkoutBtn.disabled = loading;
-    checkoutBtn.setAttribute("aria-busy", loading ? "true" : "false");
+  function checkoutLabel(loading) {
     const dict = AutoDiagI18n?.dicts?.[AutoDiagI18n.getLang()] || {};
-    checkoutBtn.textContent = loading
+    return loading
       ? dict.checkoutLoading || "Redirection…"
       : dict.checkout || AutoDiagI18n?.t("checkout") || "Valider la commande / Payer";
+  }
+
+  function setCheckoutLoading(loading) {
+    const label = checkoutLabel(loading);
+    checkoutButtons.forEach((btn) => {
+      btn.disabled = loading;
+      btn.setAttribute("aria-busy", loading ? "true" : "false");
+      btn.textContent = label;
+    });
   }
 
   function render() {
@@ -87,13 +97,19 @@
       emptyEl.hidden = false;
       contentEl.hidden = true;
       listEl.innerHTML = "";
-      if (checkoutBtn) checkoutBtn.disabled = true;
+      if (stickyCheckoutEl) stickyCheckoutEl.hidden = true;
+      checkoutButtons.forEach((btn) => {
+        btn.disabled = true;
+      });
       return;
     }
 
     emptyEl.hidden = true;
     contentEl.hidden = false;
-    if (checkoutBtn) checkoutBtn.disabled = false;
+    if (stickyCheckoutEl) stickyCheckoutEl.hidden = false;
+    checkoutButtons.forEach((btn) => {
+      btn.disabled = false;
+    });
 
     const removeLabel = AutoDiagI18n?.t("remove") || "Retirer";
 
@@ -125,8 +141,10 @@
       .join("");
 
     const sum = Cart.getSubtotal();
-    subtotalEl.textContent = Cart.formatPrice(sum);
-    totalEl.textContent = Cart.formatPrice(sum);
+    const formatted = Cart.formatPrice(sum);
+    subtotalEl.textContent = formatted;
+    totalEl.textContent = formatted;
+    if (stickyTotalEl) stickyTotalEl.textContent = formatted;
 
     if (crossSellEl && crossSellItemsEl) {
       crossSellEl.hidden = PRODUCT_CATALOG.length === 0;
@@ -285,12 +303,11 @@
   }
 
   function init() {
-    // Une seule fois : purge l’ancien panier local (état corrompu / images géantes)
     try {
-      if (!localStorage.getItem("autodiag_cart_reset_noimg")) {
+      if (!localStorage.getItem("autodiag_cart_reset_v4")) {
         localStorage.removeItem("autodiag_cart");
         AutoDiagCart?.clear?.();
-        localStorage.setItem("autodiag_cart_reset_noimg", "1");
+        localStorage.setItem("autodiag_cart_reset_v4", "1");
       }
     } catch {
       /* ignore */
@@ -301,15 +318,19 @@
     render();
 
     document.addEventListener("autodiag:lang-changed", () => {
-      const busy = checkoutBtn?.getAttribute("aria-busy") === "true";
+      const busy = checkoutButtons.some(
+        (btn) => btn.getAttribute("aria-busy") === "true"
+      );
       render();
       if (busy) setCheckoutLoading(true);
     });
 
-    checkoutBtn?.addEventListener("click", (e) => {
-      e.preventDefault();
-      if (checkoutBtn.disabled) return;
-      startCheckout();
+    checkoutButtons.forEach((btn) => {
+      btn.addEventListener("click", (e) => {
+        e.preventDefault();
+        if (btn.disabled) return;
+        startCheckout();
+      });
     });
   }
 

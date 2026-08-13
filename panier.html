@@ -8,12 +8,12 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/styles.css?v=cart4">
   <style>
-    /* Force : aucune image bloquante dans le panier */
     img {
       max-width: 80px !important;
       height: auto !important;
+      object-fit: contain !important;
     }
     .cart-page img,
     .cart-item img,
@@ -29,33 +29,81 @@
       max-height: 0 !important;
       visibility: hidden !important;
     }
-    .cart-layout {
+    [hidden] {
+      display: none !important;
+    }
+    .cart-layout:not([hidden]) {
       display: grid !important;
+      grid-template-columns: minmax(0, 1fr) minmax(240px, 340px) !important;
       gap: 1.25rem !important;
       align-items: start !important;
+      width: 100% !important;
+    }
+    .cart-items-wrap,
+    .cart-item,
+    .cart-summary {
+      overflow: visible !important;
+      min-width: 0 !important;
     }
     .cart-item {
       display: flex !important;
       flex-wrap: wrap !important;
-      gap: 12px !important;
+      gap: 12px 15px !important;
       align-items: center !important;
-      overflow: visible !important;
+    }
+    .cart-item-name {
+      overflow-wrap: anywhere;
+      word-break: break-word;
     }
     .cart-summary {
       position: sticky !important;
       top: 1rem !important;
       z-index: 40 !important;
-      overflow: visible !important;
     }
-    #checkout-btn.checkout-btn {
+    #checkout-btn,
+    #checkout-btn-sticky {
       display: flex !important;
       visibility: visible !important;
       opacity: 1 !important;
       pointer-events: auto !important;
       position: relative !important;
-      z-index: 50 !important;
+      z-index: 80 !important;
       width: 100% !important;
       min-height: 52px !important;
+    }
+    .cart-sticky-checkout {
+      display: none !important;
+    }
+    @media (max-width: 900px) {
+      .cart-layout:not([hidden]) {
+        grid-template-columns: 1fr !important;
+      }
+      .cart-page {
+        padding-bottom: 7.5rem !important;
+      }
+      .cart-sticky-checkout:not([hidden]) {
+        display: flex !important;
+        position: fixed !important;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 90;
+        gap: 0.75rem;
+        align-items: center;
+        padding: 0.75rem 1rem calc(0.75rem + env(safe-area-inset-bottom));
+        background: #1a1a1a;
+        border-top: 1px solid rgba(255, 255, 255, 0.16);
+        box-shadow: 0 -10px 32px rgba(0, 0, 0, 0.45);
+      }
+      .cart-sticky-checkout strong {
+        flex: 0 0 auto;
+        color: #fff;
+        font-size: 1rem;
+      }
+      #checkout-btn-sticky {
+        flex: 1 1 auto;
+        margin-top: 0 !important;
+      }
     }
   </style>
 </head>
@@ -165,6 +213,13 @@
     </section>
   </main>
 
+  <div class="cart-sticky-checkout" id="cart-sticky-checkout" hidden>
+    <strong id="cart-sticky-total">0.00 CHF</strong>
+    <button type="button" class="checkout-btn" id="checkout-btn-sticky" data-i18n="checkout">
+      Valider la commande / Payer
+    </button>
+  </div>
+
   <footer class="site-footer">
     <div class="container footer-inner">
       <div class="footer-grid">
@@ -193,9 +248,9 @@
 
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
-  <script src="js/cart.js"></script>
-  <script src="js/i18n.js"></script>
-  <script src="js/lang-menu.js"></script>
-  <script src="js/panier.js" defer></script>
+  <script src="js/cart.js?v=cart4"></script>
+  <script src="js/i18n.js?v=cart4"></script>
+  <script src="js/lang-menu.js?v=cart4"></script>
+  <script src="js/panier.js?v=cart4" defer></script>
 </body>
 </html>
