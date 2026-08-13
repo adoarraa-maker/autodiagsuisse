@@ -135,12 +135,8 @@
     totalEl.textContent = Cart.formatPrice(sum);
 
     if (crossSellEl && crossSellItemsEl) {
-      const itemIds = new Set(items.map((item) => item.id));
-      const suggestions = PRODUCT_CATALOG.filter(
-        (product) => !itemIds.has(product.id)
-      );
-      crossSellEl.hidden = suggestions.length === 0;
-      crossSellItemsEl.innerHTML = suggestions
+      crossSellEl.hidden = PRODUCT_CATALOG.length === 0;
+      crossSellItemsEl.innerHTML = PRODUCT_CATALOG
         .map(
           (product) => `
             <article class="cart-cross-sell-card">
