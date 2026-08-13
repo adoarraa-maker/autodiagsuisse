@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/styles.css?v=gallery1">
 </head>
 <body>
   <div class="top-banner">
@@ -57,11 +57,13 @@
   <main>
     <section class="product">
       <div class="container product-grid">
-        <div class="gallery">
+        <div class="gallery" data-gallery>
           <div class="gallery-main">
             <span class="gallery-badge">Nouveau</span>
             <img
               id="main-image"
+              class="gallery-image"
+              data-gallery-main
               src="Autodiasuisse1.png"
               alt="Launch Creader CR300 — scanner de diagnostic OBD2"
               width="800"
@@ -191,11 +193,22 @@
     </div>
   </footer>
 
+  <div class="image-lightbox" id="image-lightbox" role="dialog" aria-modal="true" aria-label="Image produit agrandie" hidden>
+    <button type="button" class="lightbox-close" data-lightbox-close aria-label="Fermer">×</button>
+    <div class="lightbox-toolbar" aria-label="Contrôles de zoom">
+      <button type="button" data-lightbox-zoom-out aria-label="Réduire le zoom">−</button>
+      <button type="button" data-lightbox-zoom-reset aria-label="Réinitialiser le zoom">100%</button>
+      <button type="button" data-lightbox-zoom-in aria-label="Agrandir le zoom">+</button>
+    </div>
+    <button type="button" class="lightbox-nav lightbox-prev" data-lightbox-prev aria-label="Image précédente">&lt;</button>
+    <button type="button" class="lightbox-nav lightbox-next" data-lightbox-next aria-label="Image suivante">&gt;</button>
+    <div class="lightbox-stage"><img id="lightbox-image" src="" alt=""></div>
+  </div>
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
-  <script src="js/cart.js?v=cart5"></script>
-  <script src="js/i18n.js?v=cart5"></script>
-  <script src="js/lang-menu.js?v=cart5"></script>
-  <script src="js/app.js?v=cart5" defer></script>
+  <script src="js/cart.js?v=gallery1"></script>
+  <script src="js/i18n.js?v=gallery1"></script>
+  <script src="js/lang-menu.js?v=gallery1"></script>
+  <script src="js/app.js?v=gallery1" defer></script>
 </body>
 </html>
