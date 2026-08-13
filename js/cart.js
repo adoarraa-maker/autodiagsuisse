@@ -13,7 +13,7 @@
   function normalizeImage(image) {
     const raw = String(image || "").trim();
     if (LEGACY_IMAGE_MAP[raw]) return LEGACY_IMAGE_MAP[raw];
-    if (/^images\/[A-Za-z0-9._%-]+$/i.test(raw)) return raw;
+    if (/^(?:images\/)?[A-Za-z0-9._%-]+$/i.test(raw)) return raw;
     return "images/hoto1.png";
   }
 
