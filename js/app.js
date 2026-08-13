@@ -150,14 +150,6 @@
           const lineTotal = Number(item.price) * qty;
           return `
             <li class="cart-drawer-item" data-id="${escapeHtml(item.id)}">
-              <img
-                class="cart-item-thumb"
-                src="${escapeHtml(item.image)}"
-                alt=""
-                width="80"
-                height="80"
-                style="max-width:80px!important;max-height:80px!important;width:80px!important;height:80px!important;object-fit:contain!important;display:block!important;"
-              >
               <div class="cart-drawer-item-info">
                 <a class="cart-drawer-item-name" href="${productUrl(item.id)}">${escapeHtml(item.name)}</a>
                 <div>${AutoDiagCart.formatPrice(lineTotal)}</div>
@@ -183,14 +175,6 @@
         .map(
           (product) => `
             <article class="cart-recommendation">
-              <img
-                class="cart-item-thumb"
-                src="${escapeHtml(product.image)}"
-                alt=""
-                width="80"
-                height="80"
-                style="max-width:80px!important;max-height:80px!important;width:80px!important;height:80px!important;object-fit:contain!important;display:block!important;"
-              >
               <div>
                 <a class="cart-recommendation-name" href="${productUrl(product.id)}">${escapeHtml(product.name)}</a>
                 <span class="cart-recommendation-price">${AutoDiagCart.formatPrice(product.price)}</span>

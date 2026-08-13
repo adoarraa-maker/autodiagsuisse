@@ -101,24 +101,11 @@
       .map((item) => {
         const id = escapeHtml(item.id);
         const name = escapeHtml(item.name);
-        const image = escapeHtml(safeImageSrc(item.image));
         const url = productUrl(item.id);
         const qty = Math.min(99, Math.max(1, Number(item.qty) || 1));
         return `
           <li class="cart-item" data-id="${id}">
             <div class="cart-item-product">
-              <a href="${url}" class="cart-item-thumb-link">
-                <img
-                  class="cart-item-thumb"
-                  src="${image}"
-                  alt=""
-                  width="80"
-                  height="80"
-                  loading="lazy"
-                  decoding="async"
-                  style="max-width:80px!important;max-height:80px!important;width:80px!important;height:80px!important;object-fit:contain!important;display:block!important;"
-                >
-              </a>
               <div class="cart-item-info">
                 <a href="${url}" class="cart-item-name">${name}</a>
                 <span class="cart-item-inline-price">${Cart.formatPrice(item.price)}</span>
@@ -147,18 +134,6 @@
         .map(
           (product) => `
             <article class="cart-cross-sell-card">
-              <a href="${productUrl(product.id)}" class="cart-item-thumb-link">
-                <img
-                  class="cart-item-thumb"
-                  src="${escapeHtml(safeImageSrc(product.image))}"
-                  alt=""
-                  width="80"
-                  height="80"
-                  loading="lazy"
-                  decoding="async"
-                  style="max-width:80px!important;max-height:80px!important;width:80px!important;height:80px!important;object-fit:contain!important;display:block!important;"
-                >
-              </a>
               <div class="cart-cross-sell-card-info">
                 <a href="${productUrl(product.id)}">${escapeHtml(product.name)}</a>
                 <strong>${Cart.formatPrice(product.price)}</strong>
@@ -310,6 +285,17 @@
   }
 
   function init() {
+    // Une seule fois : purge l’ancien panier local (état corrompu / images géantes)
+    try {
+      if (!localStorage.getItem("autodiag_cart_reset_noimg")) {
+        localStorage.removeItem("autodiag_cart");
+        AutoDiagCart?.clear?.();
+        localStorage.setItem("autodiag_cart_reset_noimg", "1");
+      }
+    } catch {
+      /* ignore */
+    }
+
     bindList();
     bindCrossSell();
     render();
