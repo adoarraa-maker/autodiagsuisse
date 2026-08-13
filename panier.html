@@ -9,6 +9,30 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/styles.css">
+  <style>
+    /* Override forcé — images panier (écrase styles externes / cache) */
+    .cart-page img,
+    .cart-item img,
+    .cart-item-thumb,
+    .cart-cross-sell-card img,
+    #cart-items img,
+    #cart-cross-sell-items img {
+      max-width: 80px !important;
+      max-height: 80px !important;
+      width: 80px !important;
+      height: 80px !important;
+      object-fit: contain !important;
+      display: block !important;
+    }
+    .cart-item-thumb-link {
+      display: inline-grid !important;
+      width: 80px !important;
+      height: 80px !important;
+      place-items: center;
+      overflow: hidden !important;
+      flex: 0 0 80px !important;
+    }
+  </style>
 </head>
 <body>
   <div class="top-banner">

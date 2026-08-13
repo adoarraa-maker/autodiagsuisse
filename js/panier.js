@@ -107,8 +107,17 @@
         return `
           <li class="cart-item" data-id="${id}">
             <div class="cart-item-product">
-              <a href="${url}">
-                <img src="${image}" alt="" width="96" height="96" loading="lazy" decoding="async">
+              <a href="${url}" class="cart-item-thumb-link">
+                <img
+                  class="cart-item-thumb"
+                  src="${image}"
+                  alt=""
+                  width="80"
+                  height="80"
+                  loading="lazy"
+                  decoding="async"
+                  style="max-width:80px!important;max-height:80px!important;width:80px!important;height:80px!important;object-fit:contain!important;display:block!important;"
+                >
               </a>
               <div class="cart-item-info">
                 <a href="${url}" class="cart-item-name">${name}</a>
@@ -138,8 +147,17 @@
         .map(
           (product) => `
             <article class="cart-cross-sell-card">
-              <a href="${productUrl(product.id)}">
-                <img src="${escapeHtml(safeImageSrc(product.image))}" alt="" width="160" height="160" loading="lazy" decoding="async">
+              <a href="${productUrl(product.id)}" class="cart-item-thumb-link">
+                <img
+                  class="cart-item-thumb"
+                  src="${escapeHtml(safeImageSrc(product.image))}"
+                  alt=""
+                  width="80"
+                  height="80"
+                  loading="lazy"
+                  decoding="async"
+                  style="max-width:80px!important;max-height:80px!important;width:80px!important;height:80px!important;object-fit:contain!important;display:block!important;"
+                >
               </a>
               <div class="cart-cross-sell-card-info">
                 <a href="${productUrl(product.id)}">${escapeHtml(product.name)}</a>
