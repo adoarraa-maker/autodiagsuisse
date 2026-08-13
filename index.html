@@ -294,6 +294,24 @@
     </div>
     <div class="lightbox-stage"><img id="lightbox-image" src="" alt=""></div>
   </div>
+  <aside class="cart-drawer" id="cart-drawer" aria-label="Votre panier" aria-hidden="true" hidden>
+    <div class="cart-drawer-panel" role="dialog" aria-modal="true" aria-labelledby="cart-drawer-title">
+      <div class="cart-drawer-header">
+        <h2 id="cart-drawer-title">Votre panier</h2>
+        <button type="button" class="cart-drawer-close" data-cart-close aria-label="Fermer le panier">×</button>
+      </div>
+      <div id="cart-drawer-empty" class="cart-drawer-empty">Votre panier est vide.</div>
+      <ul id="cart-drawer-items" class="cart-drawer-items" aria-live="polite"></ul>
+      <section class="cart-recommendations" id="cart-recommendations" aria-labelledby="cart-recommendations-title">
+        <h3 id="cart-recommendations-title">Vous aimerez aussi</h3>
+        <div id="cart-recommendation-items" class="cart-recommendation-items"></div>
+      </section>
+      <div class="cart-drawer-footer">
+        <div class="cart-drawer-total"><span>Total</span><strong id="cart-drawer-total">0.00 CHF</strong></div>
+        <a href="panier.html" class="checkout-btn">Passer commande</a>
+      </div>
+    </div>
+  </aside>
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
   <script src="js/cart.js"></script>

@@ -14,6 +14,20 @@
     "launch-crp123e-v3-elite": "https://buy.stripe.com/8x2fZh3OwcsU5wK60w2kw00",
     "launch-creader-cr300": "https://buy.stripe.com/aFa14o4AF6Zabkr3AncAo0g",
   };
+  const PRODUCT_CATALOG = [
+    {
+      id: "launch-crp123e-v3-elite",
+      name: "Scanner de Diagnostic Auto Professionnel LAUNCH CRP123E V3.0 Elite",
+      price: 139.9,
+      image: "images/hoto1.png",
+    },
+    {
+      id: "launch-creader-cr300",
+      name: "Scanner de Diagnostic Auto Multimarque - Launch Creader CR300",
+      price: 39,
+      image: "Autodiasuisse1.png",
+    },
+  ];
 
   const emptyEl = document.getElementById("cart-empty");
   const contentEl = document.getElementById("cart-content");
@@ -22,6 +36,8 @@
   const totalEl = document.getElementById("cart-total");
   const checkoutBtn = document.getElementById("checkout-btn");
   const toast = document.getElementById("toast");
+  const crossSellEl = document.getElementById("cart-cross-sell");
+  const crossSellItemsEl = document.getElementById("cart-cross-sell-items");
 
   function escapeHtml(value) {
     return String(value ?? "")
@@ -117,6 +133,30 @@
     const sum = Cart.getSubtotal();
     subtotalEl.textContent = Cart.formatPrice(sum);
     totalEl.textContent = Cart.formatPrice(sum);
+
+    if (crossSellEl && crossSellItemsEl) {
+      const itemIds = new Set(items.map((item) => item.id));
+      const suggestions = PRODUCT_CATALOG.filter(
+        (product) => !itemIds.has(product.id)
+      );
+      crossSellEl.hidden = suggestions.length === 0;
+      crossSellItemsEl.innerHTML = suggestions
+        .map(
+          (product) => `
+            <article class="cart-cross-sell-card">
+              <a href="${productUrl(product.id)}">
+                <img src="${escapeHtml(safeImageSrc(product.image))}" alt="" width="160" height="160" loading="lazy" decoding="async">
+              </a>
+              <div class="cart-cross-sell-card-info">
+                <a href="${productUrl(product.id)}">${escapeHtml(product.name)}</a>
+                <strong>${Cart.formatPrice(product.price)}</strong>
+                <button type="button" data-cross-sell-id="${escapeHtml(product.id)}">Ajouter au panier</button>
+              </div>
+            </article>
+          `
+        )
+        .join("");
+    }
   }
 
   function bindList() {
@@ -150,6 +190,22 @@
       if (!input || !row) return;
       AutoDiagCart.setQty(row.getAttribute("data-id"), input.value);
       render();
+    });
+  }
+
+  function bindCrossSell() {
+    crossSellItemsEl?.addEventListener("click", (e) => {
+      const button = e.target.closest("[data-cross-sell-id]");
+      if (!button || !window.AutoDiagCart) return;
+
+      const product = PRODUCT_CATALOG.find(
+        (entry) => entry.id === button.dataset.crossSellId
+      );
+      if (!product) return;
+
+      AutoDiagCart.add(product, 1);
+      render();
+      showToast(`1 × ${product.name} ajouté au panier`);
     });
   }
 
@@ -243,6 +299,7 @@
 
   function init() {
     bindList();
+    bindCrossSell();
     render();
 
     document.addEventListener("autodiag:lang-changed", () => {

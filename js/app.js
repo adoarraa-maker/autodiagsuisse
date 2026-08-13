@@ -7,6 +7,20 @@
   const toast = document.getElementById("toast");
   const lightbox = document.getElementById("image-lightbox");
   const lightboxImage = document.getElementById("lightbox-image");
+  const PRODUCT_CATALOG = [
+    {
+      id: "launch-crp123e-v3-elite",
+      name: "Scanner de Diagnostic Auto Professionnel LAUNCH CRP123E V3.0 Elite",
+      price: "139.90",
+      image: "images/hoto1.png",
+    },
+    {
+      id: "launch-creader-cr300",
+      name: "Scanner de Diagnostic Auto Multimarque - Launch Creader CR300",
+      price: "39.00",
+      image: "Autodiasuisse1.png",
+    },
+  ];
   let lightboxZoom = 1;
 
   function clampQty(n) {
@@ -93,20 +107,159 @@
     return qtyInput;
   }
 
-  function initAddToCart(card, qtyInput) {
-    const addBtn = card.querySelector("[data-add-to-cart], #add-to-cart");
-    addBtn?.addEventListener("click", () => {
-      if (!window.AutoDiagCart) return;
+  function escapeHtml(value) {
+    return String(value ?? "")
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;")
+      .replace(/'/g, "&#39;");
+  }
 
-      const qty = clampQty(qtyInput?.value);
+  function productUrl(id) {
+    return id === "launch-creader-cr300" ? "#launch-creader-cr300" : "#";
+  }
+
+  function initCartDrawer() {
+    const drawer = document.getElementById("cart-drawer");
+    const drawerItems = document.getElementById("cart-drawer-items");
+    const drawerEmpty = document.getElementById("cart-drawer-empty");
+    const drawerTotal = document.getElementById("cart-drawer-total");
+    const recommendations = document.getElementById("cart-recommendations");
+    const recommendationItems = document.getElementById("cart-recommendation-items");
+    const cartBtn = document.getElementById("cart-btn");
+
+    if (
+      !drawer ||
+      !drawerItems ||
+      !drawerEmpty ||
+      !drawerTotal ||
+      !recommendations ||
+      !recommendationItems
+    ) {
+      return null;
+    }
+
+    function render() {
+      const items = AutoDiagCart?.getItems?.() || [];
+      drawerEmpty.hidden = items.length > 0;
+      drawerItems.hidden = items.length === 0;
+      drawerItems.innerHTML = items
+        .map((item) => {
+          const qty = clampQty(item.qty);
+          const lineTotal = Number(item.price) * qty;
+          return `
+            <li class="cart-drawer-item" data-id="${escapeHtml(item.id)}">
+              <img src="${escapeHtml(item.image)}" alt="">
+              <div class="cart-drawer-item-info">
+                <a class="cart-drawer-item-name" href="${productUrl(item.id)}">${escapeHtml(item.name)}</a>
+                <div>${AutoDiagCart.formatPrice(lineTotal)}</div>
+                <div class="cart-drawer-item-actions">
+                  <button type="button" data-cart-action="decrease" aria-label="Diminuer la quantité">−</button>
+                  <span aria-label="Quantité">${qty}</span>
+                  <button type="button" data-cart-action="increase" aria-label="Augmenter la quantité">+</button>
+                  <button type="button" class="cart-drawer-remove" data-cart-action="remove">Retirer</button>
+                </div>
+              </div>
+            </li>
+          `;
+        })
+        .join("");
+      drawerTotal.textContent = AutoDiagCart?.formatPrice?.(AutoDiagCart.getSubtotal()) || "0.00 CHF";
+
+      const itemIds = new Set(items.map((item) => item.id));
+      const suggestedProducts = PRODUCT_CATALOG.filter(
+        (product) => !itemIds.has(product.id)
+      );
+      recommendations.hidden = suggestedProducts.length === 0;
+      recommendationItems.innerHTML = suggestedProducts
+        .map(
+          (product) => `
+            <article class="cart-recommendation">
+              <img src="${escapeHtml(product.image)}" alt="">
+              <div>
+                <a class="cart-recommendation-name" href="${productUrl(product.id)}">${escapeHtml(product.name)}</a>
+                <span class="cart-recommendation-price">${AutoDiagCart.formatPrice(product.price)}</span>
+              </div>
+              <button type="button" data-suggested-product="${escapeHtml(product.id)}">Ajouter</button>
+            </article>
+          `
+        )
+        .join("");
+    }
+
+    function open() {
+      render();
+      drawer.hidden = false;
+      drawer.setAttribute("aria-hidden", "false");
+      document.body.classList.add("lightbox-open");
+      drawer.querySelector("[data-cart-close]")?.focus();
+    }
+
+    function close() {
+      drawer.hidden = true;
+      drawer.setAttribute("aria-hidden", "true");
+      document.body.classList.remove("lightbox-open");
+      cartBtn?.focus();
+    }
+
+    cartBtn?.addEventListener("click", (event) => {
+      event.preventDefault();
+      open();
+    });
+    drawer.querySelector("[data-cart-close]")?.addEventListener("click", close);
+    drawer.addEventListener("click", (event) => {
+      if (event.target === drawer) close();
+
+      const suggestionBtn = event.target.closest("[data-suggested-product]");
+      if (suggestionBtn && window.AutoDiagCart) {
+        const product = PRODUCT_CATALOG.find(
+          (entry) => entry.id === suggestionBtn.dataset.suggestedProduct
+        );
+        if (!product) return;
+        AutoDiagCart.add(product, 1);
+        AutoDiagCart.updateBadge();
+        render();
+        showToast(`1 × ${product.name} ajouté au panier`);
+        return;
+      }
+
+      const actionBtn = event.target.closest("[data-cart-action]");
+      const row = event.target.closest("[data-id]");
+      if (!actionBtn || !row || !window.AutoDiagCart) return;
+      const id = row.getAttribute("data-id");
+      const item = AutoDiagCart.getItems().find((entry) => entry.id === id);
+      if (!item) return;
+
+      if (actionBtn.dataset.cartAction === "remove") AutoDiagCart.remove(id);
+      if (actionBtn.dataset.cartAction === "increase") AutoDiagCart.setQty(id, Number(item.qty) + 1);
+      if (actionBtn.dataset.cartAction === "decrease") AutoDiagCart.setQty(id, Number(item.qty) - 1);
+      render();
+    });
+    document.addEventListener("autodiag:cart-updated", render);
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape" && !drawer.hidden) close();
+    });
+
+    return { open };
+  }
+
+  function initAddToCart(drawer) {
+    document.addEventListener("click", (event) => {
+      const addBtn = event.target.closest("[data-add-to-cart], .add-to-cart");
+      if (!addBtn || !window.AutoDiagCart) return;
+
+      const card = addBtn.closest("[data-product-card], .product");
+      const qty = clampQty(card?.querySelector("[data-qty], #qty")?.value);
       const product = {
         id: addBtn.dataset.id,
         name: addBtn.dataset.name,
         price: addBtn.dataset.price,
         image: addBtn.dataset.image,
       };
-      const productLabel = addBtn.dataset.model || product.name;
+      if (!product.id || !product.name || !product.price) return;
 
+      const productLabel = addBtn.dataset.model || product.name;
       AutoDiagCart.add(product, qty);
       AutoDiagCart.updateBadge();
 
@@ -116,9 +269,13 @@
       if (label) label.textContent = dict.added || "Ajouté !";
       showToast(`${qty} × ${productLabel} — ${dict.toast || "ajouté au panier"}`);
 
-      setTimeout(() => {
-        window.location.href = "panier.html";
-      }, 700);
+      if (drawer) {
+        setTimeout(drawer.open, 250);
+      } else {
+        setTimeout(() => {
+          window.location.href = "panier.html";
+        }, 700);
+      }
     });
   }
 
@@ -151,10 +308,11 @@
 
     const cards = document.querySelectorAll("[data-product-card]");
     (cards.length ? cards : document.querySelectorAll(".product")).forEach((card) => {
-      initAddToCart(card, initQty(card));
+      initQty(card);
     });
 
     initLightbox();
+    initAddToCart(initCartDrawer());
     AutoDiagCart?.updateBadge();
   }
 
