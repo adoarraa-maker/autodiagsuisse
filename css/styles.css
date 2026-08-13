@@ -1385,10 +1385,32 @@ button {
   max-width: 100px !important;
   max-height: 100px !important;
   width: 100px !important;
-  height: auto !important;
+  height: 100px !important;
   object-fit: contain !important;
   display: block;
   margin: 0 auto;
+}
+
+.cart-page .cart-item-product > a {
+  display: grid;
+  flex: 0 0 100px;
+  width: 100px;
+  height: 100px;
+  place-items: center;
+  overflow: hidden;
+}
+
+.cart-page .cart-item-product img {
+  flex: 0 0 100px;
+  max-width: 100px !important;
+  max-height: 100px !important;
+  width: 100px !important;
+  height: 100px !important;
+  object-fit: contain !important;
+}
+
+.cart-page .cart-items-wrap {
+  min-width: 0;
 }
 
 .cart-cross-sell-card-info {
