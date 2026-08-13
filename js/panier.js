@@ -3,15 +3,17 @@
  *
  * Flux :
  * 1) POST /api/create-checkout (quantité réelle + adresse collectée par Stripe)
- * 2) Si l’API est indisponible → fallback Payment Link (même compte marchand)
+ * 2) Si l’API est indisponible → fallback Payment Link du produit concerné
  * 3) Après paiement → webhook → e-mail avec adresse à ORDER_NOTIFY_EMAIL
  */
 (function () {
   "use strict";
 
-  /** Payment Link du CRP123E (compte Stripe marchand) — secours si l’API échoue */
-  const STRIPE_PAYMENT_LINK =
-    "https://buy.stripe.com/8x2fZh3OwcsU5wK60w2kw00";
+  /** Payment Links Stripe — secours uniquement pour un produit seul. */
+  const STRIPE_PAYMENT_LINKS = {
+    "launch-crp123e-v3-elite": "https://buy.stripe.com/8x2fZh3OwcsU5wK60w2kw00",
+    "launch-creader-cr300": "https://buy.stripe.com/aFa14o4AF6Zabkr3AncAo0g",
+  };
 
   const emptyEl = document.getElementById("cart-empty");
   const contentEl = document.getElementById("cart-content");
@@ -32,8 +34,12 @@
 
   function safeImageSrc(src) {
     const value = String(src || "").trim();
-    if (/^images\/[A-Za-z0-9._%-]+$/i.test(value)) return value;
+    if (/^(?:images\/)?[A-Za-z0-9._%-]+$/i.test(value)) return value;
     return "images/hoto1.png";
+  }
+
+  function productUrl(id) {
+    return id === "launch-creader-cr300" ? "cr300.html" : "index.html";
   }
 
   function showToast(message) {
@@ -81,15 +87,16 @@
         const id = escapeHtml(item.id);
         const name = escapeHtml(item.name);
         const image = escapeHtml(safeImageSrc(item.image));
+        const url = productUrl(item.id);
         const qty = Math.min(99, Math.max(1, Number(item.qty) || 1));
         return `
           <li class="cart-item" data-id="${id}">
             <div class="cart-item-product">
-              <a href="index.html">
+              <a href="${url}">
                 <img src="${image}" alt="" width="96" height="96" loading="lazy" decoding="async">
               </a>
               <div class="cart-item-info">
-                <a href="index.html" class="cart-item-name">${name}</a>
+                <a href="${url}" class="cart-item-name">${name}</a>
                 <button type="button" class="cart-item-remove" data-action="remove">${escapeHtml(removeLabel)}</button>
               </div>
             </div>
@@ -146,13 +153,38 @@
     });
   }
 
-  function goToPaymentLink() {
+  function goToPaymentLink(url) {
     try {
       sessionStorage.setItem("autodiag_checkout_pending", "1");
     } catch {
       /* ignore */
     }
-    window.location.href = STRIPE_PAYMENT_LINK;
+    window.location.href = url;
+  }
+
+  function paymentLinkFor(items) {
+    if (items.length !== 1) return "";
+    return STRIPE_PAYMENT_LINKS[items[0].id] || "";
+  }
+
+  function handleCheckoutFailure(items, detail) {
+    const paymentLink = paymentLinkFor(items);
+    if (paymentLink) {
+      console.warn("create-checkout a échoué — fallback Payment Link", detail);
+      goToPaymentLink(paymentLink);
+      return;
+    }
+
+    try {
+      sessionStorage.removeItem("autodiag_checkout_pending");
+    } catch {
+      /* ignore */
+    }
+    setCheckoutLoading(false);
+    showToast(
+      AutoDiagI18n?.t("checkoutError") ||
+        "Impossible de démarrer le paiement. Réessayez."
+    );
   }
 
   async function startCheckout() {
@@ -191,26 +223,21 @@
 
       // API absente (ex. hébergement sans Netlify Functions) → Payment Link
       if (res.status === 404 || res.status === 405) {
-        console.warn(
-          "create-checkout indisponible — fallback Payment Link Stripe"
-        );
-        goToPaymentLink();
+        handleCheckoutFailure(items, "API indisponible");
         return;
       }
 
       const data = await res.json().catch(() => ({}));
 
       if (!res.ok || !data.url) {
-        console.warn("create-checkout a échoué — fallback Payment Link", data);
-        goToPaymentLink();
+        handleCheckoutFailure(items, data);
         return;
       }
 
       window.location.href = data.url;
     } catch (err) {
-      // Réseau / CORS / site statique seul → ne jamais bloquer l’achat
-      console.error("Checkout API error, fallback Payment Link:", err);
-      goToPaymentLink();
+      console.error("Checkout API error:", err);
+      handleCheckoutFailure(items, err);
     }
   }
 

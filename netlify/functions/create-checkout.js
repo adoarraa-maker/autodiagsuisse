@@ -20,6 +20,12 @@ const CATALOG = {
     currency: "chf",
     imagePath: "/images/hoto1.png",
   },
+  "launch-creader-cr300": {
+    name: "Scanner de Diagnostic Auto Multimarque - Launch Creader CR300",
+    unitAmount: 3900,
+    currency: "chf",
+    imagePath: "/Autodiasuisse1.png",
+  },
 };
 
 const LOCALES = new Set(["fr", "de", "it", "en", "auto"]);
@@ -88,6 +94,7 @@ exports.handler = async (event) => {
 
   const siteUrl = getSiteUrl(event);
   const lineItems = [];
+  const productIds = [];
 
   for (const raw of body.items) {
     const id = typeof raw.id === "string" ? raw.id : "";
@@ -109,6 +116,7 @@ exports.handler = async (event) => {
         },
       },
     });
+    productIds.push(id);
   }
 
   if (!lineItems.length) {
@@ -153,7 +161,7 @@ exports.handler = async (event) => {
       // (carte, TWINT, Apple Pay, etc. selon ce que vous avez activé).
       metadata: {
         source: "autodiag-suisse",
-        product: "launch-crp123e-v3-elite",
+        product_ids: productIds.join(",").slice(0, 500),
       },
     });
 

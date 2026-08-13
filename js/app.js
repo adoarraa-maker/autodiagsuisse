@@ -72,6 +72,7 @@
         price: addBtn.dataset.price,
         image: addBtn.dataset.image,
       };
+      const productLabel = addBtn.dataset.model || product.name;
 
       AutoDiagCart.add(product, qty);
       AutoDiagCart.updateBadge();
@@ -80,7 +81,7 @@
       const dict = AutoDiagI18n?.dicts?.[AutoDiagI18n.getLang()] || {};
       addBtn.classList.add("added");
       if (label) label.textContent = dict.added || "Ajouté !";
-      showToast(`${qty} × LAUNCH CRP123E — ${dict.toast || "ajouté au panier"}`);
+      showToast(`${qty} × ${productLabel} — ${dict.toast || "ajouté au panier"}`);
 
       setTimeout(() => {
         window.location.href = "panier.html";
