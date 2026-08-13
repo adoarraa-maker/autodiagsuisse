@@ -10,22 +10,13 @@
   <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/styles.css">
   <style>
-    /* Masque totalement toutes les images du panier */
+    img { max-width: 80px !important; height: auto !important; }
+    /* Aucune image d’appareil dans le panier */
     .cart-page img,
     .cart-item img,
-    .cart-item-thumb,
-    .cart-cross-sell-card img,
-    .cart-drawer img,
-    .cart-recommendation img,
     #cart-items img,
-    #cart-cross-sell-items img,
-    [class*="cart"] img {
+    #cart-cross-sell-items img {
       display: none !important;
-      width: 0 !important;
-      height: 0 !important;
-      max-width: 0 !important;
-      max-height: 0 !important;
-      visibility: hidden !important;
     }
   </style>
 </head>
