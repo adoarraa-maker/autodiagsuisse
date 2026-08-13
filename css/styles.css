@@ -1371,7 +1371,7 @@ button {
 
 .cart-cross-sell-card img {
   width: 100%;
-  max-height: 70px;
+  max-height: 100px;
   object-fit: contain;
   border-radius: 6px;
 }
@@ -1434,10 +1434,11 @@ button {
 }
 
 .cart-item-product img {
-  width: 80px;
-  max-width: 80px;
-  height: 80px;
-  object-fit: cover;
+  width: 90px;
+  max-width: 90px;
+  height: 90px;
+  max-height: 90px;
+  object-fit: contain;
   border-radius: 8px;
   border: 1px solid var(--border);
   background: #0e1116;
@@ -1446,10 +1447,10 @@ button {
 .cart-item-info {
   display: flex;
   flex: 1;
-  flex-direction: row;
+  flex-direction: column;
   align-items: flex-start;
-  justify-content: space-between;
-  gap: 0.75rem;
+  justify-content: center;
+  gap: 0.35rem;
   min-width: 0;
 }
 
@@ -1462,6 +1463,12 @@ button {
 
 .cart-item-name:hover {
   color: #dbe7ff;
+}
+
+.cart-item-inline-price {
+  color: #f0f0f0;
+  font-size: 0.9rem;
+  font-weight: 700;
 }
 
 .cart-item-remove {
@@ -1498,6 +1505,8 @@ button {
 .cart-item-qty {
   display: flex;
   flex: 0 0 auto;
+  align-items: center;
+  gap: 10px;
   justify-content: center;
 }
 

@@ -99,7 +99,6 @@
 
     listEl.innerHTML = items
       .map((item) => {
-        const line = (Number(item.price) || 0) * (Number(item.qty) || 0);
         const id = escapeHtml(item.id);
         const name = escapeHtml(item.name);
         const image = escapeHtml(safeImageSrc(item.image));
@@ -113,18 +112,17 @@
               </a>
               <div class="cart-item-info">
                 <a href="${url}" class="cart-item-name">${name}</a>
-                <button type="button" class="cart-item-remove" data-action="remove">${escapeHtml(removeLabel)}</button>
+                <span class="cart-item-inline-price">${Cart.formatPrice(item.price)}</span>
               </div>
             </div>
-            <div class="cart-item-price">${Cart.formatPrice(item.price)}</div>
             <div class="cart-item-qty">
               <div class="qty-control compact">
                 <button type="button" data-action="dec" aria-label="-">−</button>
                 <input type="number" value="${qty}" min="1" max="99" data-action="qty" aria-label="Quantité" inputmode="numeric">
                 <button type="button" data-action="inc" aria-label="+">+</button>
               </div>
+              <button type="button" class="cart-item-remove" data-action="remove">${escapeHtml(removeLabel)}</button>
             </div>
-            <div class="cart-item-total">${Cart.formatPrice(line)}</div>
           </li>
         `;
       })
