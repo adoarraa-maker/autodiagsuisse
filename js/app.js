@@ -1,6 +1,13 @@
 /**
  * AutoDiag Suisse — galeries produit, zoom et ajout panier
  */
+try {
+  if (localStorage.getItem("ads_purged_v5") !== "1") {
+    localStorage.clear();
+    localStorage.setItem("ads_purged_v5", "1");
+  }
+} catch (e) {}
+
 (function () {
   "use strict";
 

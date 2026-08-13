@@ -6,6 +6,13 @@
  * 2) Si l’API est indisponible → fallback Payment Link du produit concerné
  * 3) Après paiement → webhook → e-mail avec adresse à ORDER_NOTIFY_EMAIL
  */
+try {
+  if (localStorage.getItem("ads_purged_v5") !== "1") {
+    localStorage.clear();
+    localStorage.setItem("ads_purged_v5", "1");
+  }
+} catch (e) {}
+
 (function () {
   "use strict";
 
@@ -303,16 +310,6 @@
   }
 
   function init() {
-    try {
-      if (!localStorage.getItem("autodiag_cart_reset_v4")) {
-        localStorage.removeItem("autodiag_cart");
-        AutoDiagCart?.clear?.();
-        localStorage.setItem("autodiag_cart_reset_v4", "1");
-      }
-    } catch {
-      /* ignore */
-    }
-
     bindList();
     bindCrossSell();
     render();
