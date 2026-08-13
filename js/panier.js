@@ -73,7 +73,7 @@
     const dict = AutoDiagI18n?.dicts?.[AutoDiagI18n.getLang()] || {};
     checkoutBtn.textContent = loading
       ? dict.checkoutLoading || "Redirection…"
-      : dict.checkout || AutoDiagI18n?.t("checkout") || "Passer commande";
+      : dict.checkout || AutoDiagI18n?.t("checkout") || "Valider la commande / Payer";
   }
 
   function render() {

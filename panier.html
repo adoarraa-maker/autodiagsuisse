@@ -10,13 +10,52 @@
   <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/styles.css">
   <style>
-    img { max-width: 80px !important; height: auto !important; }
-    /* Aucune image d’appareil dans le panier */
+    /* Force : aucune image bloquante dans le panier */
+    img {
+      max-width: 80px !important;
+      height: auto !important;
+    }
     .cart-page img,
     .cart-item img,
+    .cart-item-thumb,
+    .cart-cross-sell-card img,
     #cart-items img,
-    #cart-cross-sell-items img {
+    #cart-cross-sell-items img,
+    [class*="cart"] img {
       display: none !important;
+      width: 0 !important;
+      height: 0 !important;
+      max-width: 0 !important;
+      max-height: 0 !important;
+      visibility: hidden !important;
+    }
+    .cart-layout {
+      display: grid !important;
+      gap: 1.25rem !important;
+      align-items: start !important;
+    }
+    .cart-item {
+      display: flex !important;
+      flex-wrap: wrap !important;
+      gap: 12px !important;
+      align-items: center !important;
+      overflow: visible !important;
+    }
+    .cart-summary {
+      position: sticky !important;
+      top: 1rem !important;
+      z-index: 40 !important;
+      overflow: visible !important;
+    }
+    #checkout-btn.checkout-btn {
+      display: flex !important;
+      visibility: visible !important;
+      opacity: 1 !important;
+      pointer-events: auto !important;
+      position: relative !important;
+      z-index: 50 !important;
+      width: 100% !important;
+      min-height: 52px !important;
     }
   </style>
 </head>
@@ -110,7 +149,7 @@
               id="checkout-btn"
               data-i18n="checkout"
             >
-              Passer commande
+              Valider la commande / Payer
             </button>
             <a href="index.html" class="link-back" data-i18n="continueShopping">Continuer vos achats</a>
             <div class="payment-badges cart-pay">

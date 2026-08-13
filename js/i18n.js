@@ -45,7 +45,7 @@
       shipping: "Livraison",
       shippingValue: "Gratuite en Suisse",
       total: "Total",
-      checkout: "Passer commande",
+      checkout: "Valider la commande / Payer",
       checkoutLoading: "Redirection…",
       checkoutError: "Impossible de démarrer le paiement. Réessayez.",
       remove: "Retirer",
