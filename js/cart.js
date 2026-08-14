@@ -6,15 +6,18 @@
 
   const STORAGE_KEY = "autodiag_cart";
   const LEGACY_IMAGE_MAP = {
-    "images/hoto%26.png": "images/hoto1.png",
-    "images/hoto&.png": "images/hoto1.png",
+    "images/hoto%26.png": "images/crp123e-v3-1.png",
+    "images/hoto&.png": "images/crp123e-v3-1.png",
+    "images/hoto1.png": "images/crp123e-v3-1.png",
+    "images/HOTO2.png": "images/crp123e-v3-1.png",
+    "images/hoto3.png": "images/crp123e-v3-1.png",
   };
 
   function normalizeImage(image) {
     const raw = String(image || "").trim();
     if (LEGACY_IMAGE_MAP[raw]) return LEGACY_IMAGE_MAP[raw];
     if (/^(?:images\/)?[A-Za-z0-9._%-]+$/i.test(raw)) return raw;
-    return "images/hoto1.png";
+    return "images/crp123e-v3-1.png";
   }
 
   function sanitizeItem(item) {

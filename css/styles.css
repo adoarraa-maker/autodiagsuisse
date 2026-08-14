@@ -392,8 +392,8 @@ button {
 
 .gallery-thumbs {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(72px, 1fr));
-  gap: 0.75rem;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 0.6rem;
   margin-top: 0.85rem;
   position: relative;
   z-index: 3;
@@ -438,9 +438,11 @@ button {
 }
 
 .thumb img {
-  width: 100%;
+  width: 110%;
+  max-width: none;
   height: 100%;
   object-fit: cover;
+  object-position: left center;
   pointer-events: none;
 }
 
@@ -1949,6 +1951,10 @@ button {
 
   .gallery-main {
     aspect-ratio: 4 / 3;
+  }
+
+  .gallery-thumbs {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 
   .trust-row {

@@ -18,7 +18,7 @@ const CATALOG = {
     name: "Scanner de Diagnostic Auto Professionnel LAUNCH CRP123E V3.0 Elite",
     unitAmount: 13990,
     currency: "chf",
-    imagePath: "/images/hoto1.png",
+    imagePath: "/images/crp123e-v3-1.png",
   },
   "launch-creader-cr300": {
     name: "Scanner de Diagnostic Auto Multimarque - Launch Creader CR300",

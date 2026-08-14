@@ -26,7 +26,7 @@ try {
       id: "launch-crp123e-v3-elite",
       name: "Scanner de Diagnostic Auto Professionnel LAUNCH CRP123E V3.0 Elite",
       price: 139.9,
-      image: "images/hoto1.png",
+      image: "images/crp123e-v3-1.png",
     },
     {
       id: "launch-creader-cr300",
@@ -62,7 +62,7 @@ try {
   function safeImageSrc(src) {
     const value = String(src || "").trim();
     if (/^(?:images\/)?[A-Za-z0-9._%-]+$/i.test(value)) return value;
-    return "images/hoto1.png";
+    return "images/crp123e-v3-1.png";
   }
 
   function productUrl(id) {
