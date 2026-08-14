@@ -18,8 +18,8 @@ try {
 
   /** Payment Links Stripe — utilisés dès qu’un seul produit est dans le panier. */
   const STRIPE_PAYMENT_LINKS = {
-    "launch-crp123e-v3-elite": "https://buy.stripe.com/fZu14o2sxcju0FNef1cAo0h",
-    "launch-creader-cr300": "https://buy.stripe.com/aFa14o4AF6Zabkr3AncAo0g",
+    "launch-crp123e-v3-elite": "https://buy.stripe.com/dRm7sMd7b0AM1JR2wjcAo0i",
+    "launch-creader-cr300": "https://buy.stripe.com/14AeVe3wBfvGcovef1cAo0j",
   };
   const PRODUCT_CATALOG = [
     {
