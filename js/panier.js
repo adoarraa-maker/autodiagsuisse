@@ -16,9 +16,9 @@ try {
 (function () {
   "use strict";
 
-  /** Payment Links Stripe — secours uniquement pour un produit seul. */
+  /** Payment Links Stripe — utilisés dès qu’un seul produit est dans le panier. */
   const STRIPE_PAYMENT_LINKS = {
-    "launch-crp123e-v3-elite": "https://buy.stripe.com/8x2fZh3OwcsU5wK60w2kw00",
+    "launch-crp123e-v3-elite": "https://buy.stripe.com/fZu14o2sxcju0FNef1cAo0h",
     "launch-creader-cr300": "https://buy.stripe.com/aFa14o4AF6Zabkr3AncAo0g",
   };
   const PRODUCT_CATALOG = [
@@ -262,6 +262,13 @@ try {
     const items = Cart.getItems();
     if (!items.length) {
       showToast(AutoDiagI18n?.t("cartEmpty") || "Votre panier est vide.");
+      return;
+    }
+
+    const paymentLink = paymentLinkFor(items);
+    if (paymentLink) {
+      setCheckoutLoading(true);
+      goToPaymentLink(paymentLink);
       return;
     }
 
