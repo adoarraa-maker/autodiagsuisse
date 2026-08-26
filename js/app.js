@@ -16,16 +16,16 @@ try {
   const lightboxImage = document.getElementById("lightbox-image");
   const PRODUCT_CATALOG = [
     {
-      id: "launch-crp123e-v3-elite",
-      name: "Scanner de Diagnostic Auto Professionnel LAUNCH CRP123E V3.0 Elite",
-      price: "139.00",
-      image: "images/crp123e-v3-1.png",
-    },
-    {
       id: "launch-creader-cr300",
       name: "Scanner de Diagnostic Auto Multimarque - Launch Creader CR300",
       price: "39.90",
       image: "Autodiasuisse1.png",
+    },
+    {
+      id: "launch-creader-3001",
+      name: "Scanner de Diagnostic Auto Multimarque LAUNCH Creader 3001 (Édition 2026)",
+      price: "39.90",
+      image: "images/OBD.png",
     },
   ];
   let lightboxZoom = 1;
@@ -198,7 +198,9 @@ try {
   }
 
   function productUrl(id) {
-    return id === "launch-creader-cr300" ? "#launch-creader-cr300" : "#";
+    if (id === "launch-creader-cr300") return "cr300.html";
+    if (id === "launch-creader-3001") return "cr3001.html";
+    return "index.html";
   }
 
   function initCartDrawer() {

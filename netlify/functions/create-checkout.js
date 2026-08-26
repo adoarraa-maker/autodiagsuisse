@@ -14,17 +14,17 @@ const Stripe = require("stripe");
 
 /** Catalogue autorisé — source de vérité des prix (centimes) */
 const CATALOG = {
-  "launch-crp123e-v3-elite": {
-    name: "Scanner de Diagnostic Auto Professionnel LAUNCH CRP123E V3.0 Elite",
-    unitAmount: 13900,
-    currency: "chf",
-    imagePath: "/images/crp123e-v3-1.png",
-  },
   "launch-creader-cr300": {
     name: "Scanner de Diagnostic Auto Multimarque - Launch Creader CR300",
     unitAmount: 3990,
     currency: "chf",
     imagePath: "/Autodiasuisse1.png",
+  },
+  "launch-creader-3001": {
+    name: "Scanner de Diagnostic Auto Multimarque LAUNCH Creader 3001 (Édition 2026)",
+    unitAmount: 3990,
+    currency: "chf",
+    imagePath: "/images/OBD.png",
   },
 };
 
