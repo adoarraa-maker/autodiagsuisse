@@ -1,5 +1,5 @@
 /**
- * AutoDiag Suisse — i18n FR / DE / IT / EN
+ * AutoDia Suisse — i18n FR / DE / IT / EN
  */
 (function (global) {
   "use strict";
@@ -57,7 +57,7 @@
       successStep2: "<strong>2.</strong> Préparation &amp; expédition sous 24–48h",
       successStep3: "<strong>3.</strong> E-mail avec n° de suivi La Poste Suisse",
       successHome: "Retour à la boutique",
-      successHelp: "Une question ? Contactez-nous à <a href=\"mailto:adoarraa@gmail.com\">adoarraa@gmail.com</a>",
+      successHelp: "Une question ? Contactez-nous à <a href=\"mailto:info@autodia.ch\">info@autodia.ch</a>",
     },
     de: {
       banner: "🚗 Spezialist für Kfz-Diagnose in der Schweiz | Expressversand | 2 Jahre Garantie",
@@ -111,7 +111,7 @@
       successStep2: "<strong>2.</strong> Vorbereitung &amp; Versand in 24–48 Std.",
       successStep3: "<strong>3.</strong> E-Mail mit Swiss-Post-Trackingnummer",
       successHome: "Zurück zum Shop",
-      successHelp: "Fragen? Schreiben Sie an <a href=\"mailto:adoarraa@gmail.com\">adoarraa@gmail.com</a>",
+      successHelp: "Fragen? Schreiben Sie an <a href=\"mailto:info@autodia.ch\">info@autodia.ch</a>",
     },
     it: {
       banner: "🚗 Specialista della Diagnostica Auto in Svizzera | Spedizione Express | Garanzia 2 anni",
@@ -165,7 +165,7 @@
       successStep2: "<strong>2.</strong> Preparazione e spedizione entro 24–48h",
       successStep3: "<strong>3.</strong> E-mail con n° di tracking La Posta Svizzera",
       successHome: "Torna al negozio",
-      successHelp: "Domande? Scrivici a <a href=\"mailto:adoarraa@gmail.com\">adoarraa@gmail.com</a>",
+      successHelp: "Domande? Scrivici a <a href=\"mailto:info@autodia.ch\">info@autodia.ch</a>",
     },
     en: {
       banner: "🚗 Automotive Diagnostic Specialist in Switzerland | Express Delivery | 2-Year Warranty",
@@ -219,7 +219,7 @@
       successStep2: "<strong>2.</strong> Prep &amp; shipping within 24–48h",
       successStep3: "<strong>3.</strong> Email with Swiss Post tracking number",
       successHome: "Back to the shop",
-      successHelp: "Questions? Contact us at <a href=\"mailto:adoarraa@gmail.com\">adoarraa@gmail.com</a>",
+      successHelp: "Questions? Contact us at <a href=\"mailto:info@autodia.ch\">info@autodia.ch</a>",
     },
   };
 

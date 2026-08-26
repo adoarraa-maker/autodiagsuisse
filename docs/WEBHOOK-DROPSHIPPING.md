@@ -46,9 +46,9 @@ Sans adresse de livraison collectée, le webhook ne pourra pas transmettre une a
 ## Étape 2 — Compte Resend (e-mails)
 
 1. Créez un compte sur [resend.com](https://resend.com)
-2. Ajoutez et vérifiez votre domaine `autodiagsuisse.ch` (DNS)
+2. Ajoutez et vérifiez votre domaine `autodia.ch` (DNS)
 3. Créez une **API Key** (`re_…`)
-4. Notez l’expéditeur, ex. : `AutoDiag Suisse <commandes@autodiagsuisse.ch>`
+4. Notez l’expéditeur, ex. : `AutoDia Suisse <info@autodia.ch>`
 
 > En phase de test, Resend autorise souvent `onboarding@resend.dev` comme expéditeur vers **votre** adresse uniquement.
 
@@ -80,7 +80,7 @@ URL de la fonction après déploiement :
 https://VOTRE-SITE.netlify.app/api/stripe-webhook
 ```
 
-(Si vous avez un domaine custom : `https://autodiagsuisse.ch/api/stripe-webhook`)
+(Si vous avez un domaine custom : `https://autodia.ch/api/stripe-webhook`)
 
 ---
 
@@ -93,8 +93,8 @@ https://VOTRE-SITE.netlify.app/api/stripe-webhook
 | `STRIPE_SECRET_KEY` | `sk_live_…` | Oui |
 | `STRIPE_WEBHOOK_SECRET` | `whsec_…` (après étape 5) | Oui |
 | `RESEND_API_KEY` | `re_…` | Oui |
-| `EMAIL_FROM` | `AutoDiag Suisse <commandes@…>` | Oui |
-| `ORDER_NOTIFY_EMAIL` | `contact@autodiagsuisse.ch` | Oui* |
+| `EMAIL_FROM` | `AutoDia Suisse <commandes@…>` | Oui |
+| `ORDER_NOTIFY_EMAIL` | `info@autodia.ch` | Oui* |
 | `SUPPLIER_EMAIL` | e-mail fournisseur | Non* |
 | `SEND_CUSTOMER_CONFIRMATION` | `true` / `false` | Non |
 | `SUPPLIER_API_URL` | URL API dropshipping | Non |
@@ -188,7 +188,7 @@ Le webhook enverra un `POST` JSON :
 ```json
 {
   "source": "autodiag-suisse",
-  "order": { "customer": {}, "shipping": {}, "products": [], "total": "139.90" },
+  "order": { "customer": {}, "shipping": {}, "products": [], "total": "139.00" },
   "address_block": "Jean Dupont\n…"
 }
 ```

@@ -18,7 +18,7 @@ async function sendOrderEmails(order) {
   const from = process.env.EMAIL_FROM;
   // Défaut = e-mail public du site (évite une config oubliée sur Netlify)
   const notifyTo =
-    process.env.ORDER_NOTIFY_EMAIL || "adoarraa@gmail.com";
+    process.env.ORDER_NOTIFY_EMAIL || "info@autodia.ch";
   const supplierTo = process.env.SUPPLIER_EMAIL;
 
   if (!apiKey) {
@@ -35,7 +35,7 @@ async function sendOrderEmails(order) {
 
   const resend = new Resend(apiKey);
   const subject = `[Commande] ${order.customer.name} — ${
-    order.products[0]?.name || "AutoDiag Suisse"
+    order.products[0]?.name || "AutoDia Suisse"
   }`;
   const text = buildOrderEmailText(order);
   const html = buildOrderEmailHtml(order);
@@ -73,11 +73,11 @@ async function sendOrderEmails(order) {
     process.env.SEND_CUSTOMER_CONFIRMATION === "true" &&
     order.customer.email
   ) {
-    const customerSubject = "Confirmation de votre commande — AutoDiag Suisse";
+    const customerSubject = "Confirmation de votre commande — AutoDia Suisse";
     const customerText = [
       `Bonjour ${order.customer.name},`,
       "",
-      "Merci pour votre commande chez AutoDiag Suisse.",
+      "Merci pour votre commande chez AutoDia Suisse.",
       "Nous avons bien reçu votre paiement. Votre colis sera préparé sous peu.",
       "",
       "Produit(s) :",
@@ -90,8 +90,8 @@ async function sendOrderEmails(order) {
       "",
       "Vous recevrez un e-mail avec le numéro de suivi La Poste dès l'expédition.",
       "",
-      "AutoDiag Suisse",
-      "adoarraa@gmail.com",
+      "AutoDia Suisse",
+      "info@autodia.ch",
     ].join("\n");
 
     const { error } = await resend.emails.send({

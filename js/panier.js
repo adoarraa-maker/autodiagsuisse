@@ -1,5 +1,5 @@
 /**
- * AutoDiag Suisse — page panier + checkout Stripe
+ * AutoDia Suisse — page panier + checkout Stripe
  *
  * Flux :
  * 1) POST /api/create-checkout (quantité réelle + adresse collectée par Stripe)
@@ -18,20 +18,20 @@ try {
 
   /** Payment Links Stripe — utilisés dès qu’un seul produit est dans le panier. */
   const STRIPE_PAYMENT_LINKS = {
-    "launch-crp123e-v3-elite": "https://buy.stripe.com/dRm7sMd7b0AM1JR2wjcAo0i",
-    "launch-creader-cr300": "https://buy.stripe.com/14AeVe3wBfvGcovef1cAo0j",
+    "launch-crp123e-v3-elite": "https://buy.stripe.com/8x2fZh3OwcsU5wK60w2kw00",
+    "launch-creader-cr300": "https://buy.stripe.com/3cI6oH3Ow1Og4sG1Kg2kw01",
   };
   const PRODUCT_CATALOG = [
     {
       id: "launch-crp123e-v3-elite",
       name: "Scanner de Diagnostic Auto Professionnel LAUNCH CRP123E V3.0 Elite",
-      price: 139.9,
+      price: 139,
       image: "images/crp123e-v3-1.png",
     },
     {
       id: "launch-creader-cr300",
       name: "Scanner de Diagnostic Auto Multimarque - Launch Creader CR300",
-      price: 39,
+      price: 39.9,
       image: "Autodiasuisse1.png",
     },
   ];

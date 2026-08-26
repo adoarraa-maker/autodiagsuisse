@@ -20,7 +20,7 @@ Exemples selon l’hébergement :
 | Hébergement | URL de succès |
 |---|---|
 | GitHub Pages | `https://adoarraa-maker.github.io/autodiagsuisse/success.html` |
-| Domaine custom | `https://autodiagsuisse.ch/success.html` |
+| Domaine custom | `https://autodia.ch/success.html` |
 
 La page affiche le message :
 
@@ -37,7 +37,7 @@ Le panier local est automatiquement vidé à l’arrivée sur `success.html`.
 1. Ouvrez `admin/envoyer-suivi.html` dans le navigateur
 2. Saisissez e-mail client, prénom, n° de suivi Poste
 3. Cliquez **Ouvrir l’e-mail (mailto)** ou **Copier le message**
-4. Envoyez depuis votre boîte `contact@autodiagsuisse.ch`
+4. Envoyez depuis votre boîte `info@autodia.ch`
 
 Modèle HTML prêt à coller dans un outil d’e-mail marketing :
 

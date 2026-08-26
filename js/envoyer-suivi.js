@@ -20,11 +20,11 @@
     const product = document.getElementById("product-name").value.trim();
     const link = postTrackingUrl(tracking);
 
-    const subject = `AutoDiag Suisse — Votre colis est expédié (${tracking})`;
+    const subject = `AutoDia Suisse — Votre colis est expédié (${tracking})`;
     const body = [
       `Bonjour ${name},`,
       ``,
-      `Merci pour votre commande chez AutoDiag Suisse.`,
+      `Merci pour votre commande chez AutoDia Suisse.`,
       ``,
       `Votre ${product} a été expédié via La Poste Suisse.`,
       ``,
@@ -34,8 +34,8 @@
       `Le suivi peut mettre quelques heures à apparaître sur le site de La Poste.`,
       ``,
       `Cordialement,`,
-      `L'équipe AutoDiag Suisse`,
-      `adoarraa@gmail.com`,
+      `L'équipe AutoDia Suisse`,
+      `info@autodia.ch`,
     ].join("\n");
 
     return { email, subject, body, link, tracking };

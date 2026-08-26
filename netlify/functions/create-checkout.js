@@ -16,13 +16,13 @@ const Stripe = require("stripe");
 const CATALOG = {
   "launch-crp123e-v3-elite": {
     name: "Scanner de Diagnostic Auto Professionnel LAUNCH CRP123E V3.0 Elite",
-    unitAmount: 13990,
+    unitAmount: 13900,
     currency: "chf",
     imagePath: "/images/crp123e-v3-1.png",
   },
   "launch-creader-cr300": {
     name: "Scanner de Diagnostic Auto Multimarque - Launch Creader CR300",
-    unitAmount: 3900,
+    unitAmount: 3990,
     currency: "chf",
     imagePath: "/Autodiasuisse1.png",
   },

@@ -1,5 +1,5 @@
 /**
- * AutoDiag Suisse — panier partagé (localStorage)
+ * AutoDia Suisse — panier partagé (localStorage)
  */
 (function (global) {
   "use strict";

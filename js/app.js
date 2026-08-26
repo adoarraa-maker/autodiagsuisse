@@ -1,5 +1,5 @@
 /**
- * AutoDiag Suisse — galeries produit, zoom et ajout panier
+ * AutoDia Suisse — galeries produit, zoom et ajout panier
  */
 try {
   if (localStorage.getItem("ads_purged_v5") !== "1") {
@@ -18,13 +18,13 @@ try {
     {
       id: "launch-crp123e-v3-elite",
       name: "Scanner de Diagnostic Auto Professionnel LAUNCH CRP123E V3.0 Elite",
-      price: "139.90",
+      price: "139.00",
       image: "images/crp123e-v3-1.png",
     },
     {
       id: "launch-creader-cr300",
       name: "Scanner de Diagnostic Auto Multimarque - Launch Creader CR300",
-      price: "39.00",
+      price: "39.90",
       image: "Autodiasuisse1.png",
     },
   ];

@@ -126,7 +126,7 @@ function buildOrderEmailText(order) {
 
   return [
     "══════════════════════════════════════",
-    "  NOUVELLE COMMANDE — AutoDiag Suisse",
+    "  NOUVELLE COMMANDE — AutoDia Suisse",
     "══════════════════════════════════════",
     "",
     "—— ADRESSE DE LIVRAISON (copier-coller) ——",
@@ -174,9 +174,9 @@ function buildOrderEmailHtml(order) {
 
   return `<!DOCTYPE html>
 <html lang="fr">
-<head><meta charset="UTF-8"><title>Commande AutoDiag Suisse</title></head>
+<head><meta charset="UTF-8"><title>Commande AutoDia Suisse</title></head>
 <body style="font-family:Segoe UI,Arial,sans-serif;color:#1a1a1a;line-height:1.5;max-width:640px;margin:0 auto;padding:24px;">
-  <h1 style="font-size:20px;margin:0 0 8px;">Nouvelle commande — AutoDiag Suisse</h1>
+  <h1 style="font-size:20px;margin:0 0 8px;">Nouvelle commande — AutoDia Suisse</h1>
   <p style="margin:0 0 20px;color:#555;">Paiement Stripe confirmé (${order.paymentStatus})</p>
 
   <h2 style="font-size:15px;margin:24px 0 8px;text-transform:uppercase;letter-spacing:.04em;">Adresse de livraison (copier-coller)</h2>
