@@ -18,7 +18,7 @@ try {
 
   /** Payment Links Stripe — utilisés dès qu’un seul produit est dans le panier. */
   const STRIPE_PAYMENT_LINKS = {
-    "launch-creader-cr300": "https://buy.stripe.com/3cI6oH3Ow1Og4sG1Kg2kw01",
+    "launch-creader-cr300": "https://buy.stripe.com/7sY14n4SAgJaaR41Kg2kw02",
     "launch-creader-3001": "https://buy.stripe.com/3cT6oll30w10g4sG1Kg2kw01",
   };
   const PRODUCT_CATALOG = [
