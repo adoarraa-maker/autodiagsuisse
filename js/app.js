@@ -1,4 +1,4 @@
-/**
+﻿/**
  * AutoDia Suisse — galeries produit, zoom et ajout panier
  */
 try {
@@ -17,13 +17,13 @@ try {
   const PRODUCT_CATALOG = [
     {
       id: "launch-creader-cr300",
-      name: "Scanner de Diagnostic Auto Multimarque - Launch Creader CR300",
+      name: "Scanner Compact Launch Creader CR3001",
       price: "39.90",
       image: "Autodiasuisse1.png",
     },
     {
       id: "launch-creader-3001",
-      name: "Scanner de Diagnostic Auto Multimarque LAUNCH Creader 3001 (Édition 2026)",
+      name: "LAUNCH Creader CR3001 (Édition 2026)",
       price: "39.90",
       image: "images/OBD.png",
     },
@@ -412,6 +412,50 @@ try {
     });
   }
 
+  function initProductSwitcher() {
+    const triggers = Array.from(document.querySelectorAll("[data-show-product]"));
+    const panels = Array.from(document.querySelectorAll("#product-detail > [data-product-panel]"));
+    if (!triggers.length || !panels.length) return;
+
+    function showProduct(id) {
+      const target = String(id || "compact");
+
+      panels.forEach((panel) => {
+        const active = panel.getAttribute("data-product-panel") === target;
+        panel.classList.toggle("is-active", active);
+        panel.hidden = !active;
+        panel.setAttribute("aria-hidden", active ? "false" : "true");
+        if (active) {
+          const gallery = panel.querySelector("[data-gallery]");
+          if (gallery) selectGalleryImage(gallery, 0);
+        }
+      });
+
+      triggers.forEach((trigger) => {
+        const selected = trigger.getAttribute("data-show-product") === target;
+        trigger.classList.toggle("is-selected", selected);
+        trigger.setAttribute("aria-current", selected ? "true" : "false");
+      });
+
+      const hash = target === "3001" ? "launch-cr3001" : "launch-creader-cr300";
+      if (location.hash.replace(/^#/, "") !== hash) {
+        history.replaceState(null, "", `#${hash}`);
+      }
+    }
+
+    triggers.forEach((trigger) => {
+      trigger.addEventListener("click", (event) => {
+        event.preventDefault();
+        event.stopPropagation();
+        showProduct(trigger.getAttribute("data-show-product"));
+      });
+    });
+
+    const hash = (location.hash || "").replace(/^#/, "");
+    if (hash === "launch-cr3001") showProduct("3001");
+    else showProduct("compact");
+  }
+
   function init() {
     const galleries = document.querySelectorAll("[data-gallery]");
     (galleries.length ? galleries : document.querySelectorAll(".gallery")).forEach(initGallery);
@@ -421,6 +465,7 @@ try {
       initQty(card);
     });
 
+    initProductSwitcher();
     initLightbox();
     initAddToCart(initCartDrawer());
     AutoDiagCart?.updateBadge();

@@ -1,4 +1,4 @@
-/**
+﻿/**
  * AutoDia Suisse — page panier + checkout Stripe
  *
  * Flux :
@@ -24,13 +24,13 @@ try {
   const PRODUCT_CATALOG = [
     {
       id: "launch-creader-cr300",
-      name: "Scanner de Diagnostic Auto Multimarque - Launch Creader CR300",
+      name: "Scanner Compact Launch Creader CR3001",
       price: 39.9,
       image: "Autodiasuisse1.png",
     },
     {
       id: "launch-creader-3001",
-      name: "Scanner de Diagnostic Auto Multimarque LAUNCH Creader 3001 (Édition 2026)",
+      name: "LAUNCH Creader CR3001 (Édition 2026)",
       price: 39.9,
       image: "images/OBD.png",
     },
@@ -156,8 +156,10 @@ try {
     if (stickyTotalEl) stickyTotalEl.textContent = formatted;
 
     if (crossSellEl && crossSellItemsEl) {
-      crossSellEl.hidden = PRODUCT_CATALOG.length === 0;
-      crossSellItemsEl.innerHTML = PRODUCT_CATALOG
+      const inCart = new Set(items.map((item) => item.id));
+      const suggestions = PRODUCT_CATALOG.filter((product) => !inCart.has(product.id));
+      crossSellEl.hidden = suggestions.length === 0;
+      crossSellItemsEl.innerHTML = suggestions
         .map(
           (product) => `
             <article class="cart-cross-sell-card">

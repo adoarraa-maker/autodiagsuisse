@@ -1,14 +1,14 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="AutoDia Suisse — Scanners OBD2 : Launch Creader CR300 et LAUNCH Creader 3001. Test antipollution, Check Engine, Live Data. 39.90 CHF, livraison gratuite en Suisse.">
+  <meta name="description" content="AutoDia Suisse — Scanner Compact Launch Creader CR3001 et LAUNCH Creader CR3001 (Édition 2026). 39.90 CHF, livraison gratuite en Suisse.">
   <title>AutoDia Suisse | Scanners OBD2</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/styles.css?v=dual3">
+  <link rel="stylesheet" href="css/styles.css?v=fix5">
 </head>
 <body>
   <div class="top-banner">
@@ -60,20 +60,20 @@
         <h1 id="catalog-title" class="catalog-title" data-i18n="catalogTitle">Nos scanners OBD2</h1>
         <p class="catalog-lead" data-i18n="catalogLead">Deux outils à 39.90 CHF — antipollution, Check Engine et Live Data, livraison gratuite en Suisse.</p>
         <div class="catalog-grid">
-          <a class="catalog-card" href="#launch-creader-cr300">
-            <img src="Autodiasuisse1.png" alt="Launch Creader CR300" width="400" height="400" loading="eager" decoding="async">
+          <a class="catalog-card is-selected" href="#product-detail" data-show-product="compact">
+            <img src="Autodiasuisse1.png" alt="Launch Creader CR3001" width="400" height="400" loading="eager" decoding="async">
             <div class="catalog-card-body">
               <span class="catalog-card-badge" data-i18n="badgeRecommended">Recommandé</span>
-              <h2 data-i18n="titleCompact">Scanner Compact Launch Creader CR300</h2>
+              <h2 data-i18n="titleCompact">Scanner Compact Launch Creader CR3001</h2>
               <p class="catalog-card-price">39.90 CHF</p>
               <p class="catalog-card-hook" data-i18n="catalogHookAntipollution">🌿 Test antipollution &amp; pré-contrôle technique</p>
             </div>
           </a>
-          <a class="catalog-card" href="#launch-cr3001">
-            <img src="images/OBD.png" alt="LAUNCH Creader 3001 Édition 2026" width="400" height="400" loading="eager" decoding="async">
+          <a class="catalog-card" href="#product-detail" data-show-product="3001">
+            <img src="images/OBD.png" alt="LAUNCH Creader CR3001 Édition 2026" width="400" height="400" loading="eager" decoding="async">
             <div class="catalog-card-body">
               <span class="catalog-card-badge" data-i18n="badge">Best-seller</span>
-              <h2 data-i18n="titleShort3001">LAUNCH Creader 3001 (Édition 2026)</h2>
+              <h2 data-i18n="titleShort3001">LAUNCH Creader CR3001 (Édition 2026)</h2>
               <p class="catalog-card-price">39.90 CHF <s>59.00 CHF</s></p>
               <p class="catalog-card-hook" data-i18n="catalogHookAntipollution">🌿 Test antipollution &amp; pré-contrôle technique</p>
             </div>
@@ -82,8 +82,9 @@
       </div>
     </section>
 
-    <!-- Produit 1 : Scanner Compact CR300 -->
-    <section class="product" id="launch-creader-cr300" data-product-card>
+    <div id="product-detail">
+    <!-- Fiche produit unique (bascule via les cartes) -->
+    <section class="product is-active" id="launch-creader-cr300" data-product-panel="compact" data-product-card aria-hidden="false">
       <div class="container product-grid">
         <div class="gallery" data-gallery>
           <div class="gallery-main">
@@ -92,14 +93,14 @@
               class="gallery-image"
               data-gallery-main
               src="Autodiasuisse1.png"
-              alt="Launch Creader CR300 — scanner de diagnostic OBD2"
+              alt="Launch Creader CR3001 — scanner de diagnostic OBD2"
               width="800"
               height="800"
               fetchpriority="high"
               decoding="async"
             >
           </div>
-          <div class="gallery-thumbs" role="tablist" aria-label="Galerie Launch Creader CR300">
+          <div class="gallery-thumbs" role="tablist" aria-label="Galerie Launch Creader CR3001">
             <button type="button" class="thumb is-active" data-src="Autodiasuisse1.png" aria-label="Vue produit 1" aria-selected="true">
               <img src="Autodiasuisse1.png" alt="" width="160" height="160" loading="lazy" decoding="async">
             </button>
@@ -125,11 +126,11 @@
           <nav class="breadcrumb" aria-label="Fil d'Ariane">
             <a href="index.html" data-i18n="home">Accueil</a> /
             <span data-i18n="category">Scanners OBD2</span> /
-            <span>Creader CR300</span>
+            <span>Creader CR3001</span>
           </nav>
 
           <h2 class="product-title" data-i18n="titleCompactFull">
-            Scanner de Diagnostic Auto Multimarque - Launch Creader CR300
+            Scanner Compact Launch Creader CR3001
           </h2>
 
           <div class="product-meta">
@@ -144,7 +145,7 @@
           </div>
 
           <p data-i18n="introCompact">
-            Le Launch Creader CR300 est un outil de diagnostic OBD2 complet et facile à utiliser. Il lit et efface les voyants moteur (Check Engine), réalise le <strong>test antipollution / pré-contrôle technique</strong> (Smog Check / I/M Readiness), contrôle la tension batterie et affiche les données en direct — pour un bilan rapide sans passer par le garage.
+            Le Scanner Compact Launch Creader CR3001 est un outil de diagnostic OBD2 complet et facile à utiliser. Il lit et efface les voyants moteur (Check Engine), réalise le <strong>test antipollution / pré-contrôle technique</strong> (Smog Check / I/M Readiness), contrôle la tension batterie et affiche les données en direct — pour un bilan rapide sans passer par le garage.
           </p>
 
           <ul class="features">
@@ -182,8 +183,8 @@
 
             <button type="button" class="add-to-cart" data-add-to-cart
               data-id="launch-creader-cr300"
-              data-name="Scanner de Diagnostic Auto Multimarque - Launch Creader CR300"
-              data-model="Launch Creader CR300"
+              data-name="Scanner Compact Launch Creader CR3001"
+              data-model="CR3001 Compact"
               data-price="39.90"
               data-image="Autodiasuisse1.png">
               <svg viewBox="0 0 24 24" aria-hidden="true">
@@ -213,8 +214,8 @@
       </div>
     </section>
 
-    <!-- Produit 2 : LAUNCH CR3001 -->
-    <section class="product product-secondary" id="launch-cr3001" data-product-card>
+    <!-- Panneau 3001 (masqué tant que non sélectionné) -->
+    <section class="product" id="launch-cr3001" data-product-panel="3001" data-product-card hidden>
       <div class="container product-grid">
         <div class="gallery" data-gallery>
           <div class="gallery-main">
@@ -230,24 +231,24 @@
               decoding="async"
             >
           </div>
-          <div class="gallery-thumbs" role="tablist" aria-label="Galerie LAUNCH Creader 3001">
-            <button type="button" class="thumb is-active" data-src="images/OBD.png" aria-label="Vue produit — Creader 3001" aria-selected="true">
-              <img src="images/OBD.png" alt="" width="160" height="160" loading="lazy" decoding="async">
+          <div class="gallery-thumbs" role="tablist" aria-label="Galerie LAUNCH Creader CR3001">
+            <button type="button" class="thumb is-active" data-src="images/OBD.png" aria-label="Vue produit — Creader CR3001" aria-selected="true">
+              <img src="images/OBD.png" alt="LAUNCH Creader CR3001" width="160" height="160" loading="eager" decoding="async">
             </button>
             <button type="button" class="thumb" data-src="images/OBD1.png" aria-label="9 fonctions de diagnostic" aria-selected="false">
-              <img src="images/OBD1.png" alt="" width="160" height="160" loading="lazy" decoding="async">
+              <img src="images/OBD1.png" alt="Fonctions de diagnostic" width="160" height="160" loading="eager" decoding="async">
             </button>
             <button type="button" class="thumb" data-src="images/OBD3.png" aria-label="Scanner portable et compact" aria-selected="false">
-              <img src="images/OBD3.png" alt="" width="160" height="160" loading="lazy" decoding="async">
+              <img src="images/OBD3.png" alt="Scanner portable" width="160" height="160" loading="eager" decoding="async">
             </button>
             <button type="button" class="thumb" data-src="images/OBD4.png" aria-label="Mode 06 On-Board Monitor Test" aria-selected="false">
-              <img src="images/OBD4.png" alt="" width="160" height="160" loading="lazy" decoding="async">
+              <img src="images/OBD4.png" alt="Mode 06" width="160" height="160" loading="eager" decoding="async">
             </button>
             <button type="button" class="thumb" data-src="images/OBD5.png" aria-label="Antipollution / Smog Check" aria-selected="false">
-              <img src="images/OBD5.png" alt="" width="160" height="160" loading="lazy" decoding="async">
+              <img src="images/OBD5.png" alt="Antipollution Smog Check" width="160" height="160" loading="eager" decoding="async">
             </button>
             <button type="button" class="thumb" data-src="images/OBD6.png" aria-label="Compatibilité et 7 langues" aria-selected="false">
-              <img src="images/OBD6.png" alt="" width="160" height="160" loading="lazy" decoding="async">
+              <img src="images/OBD6.png" alt="Compatibilité véhicules" width="160" height="160" loading="eager" decoding="async">
             </button>
           </div>
         </div>
@@ -260,7 +261,7 @@
           </nav>
 
           <h2 class="product-title" data-i18n="title">
-            Scanner de Diagnostic Auto Multimarque LAUNCH Creader 3001 (Édition 2026)
+            LAUNCH Creader CR3001 (Édition 2026)
           </h2>
 
           <div class="product-meta">
@@ -318,8 +319,8 @@
 
             <button type="button" class="add-to-cart" data-add-to-cart
               data-id="launch-creader-3001"
-              data-name="Scanner de Diagnostic Auto Multimarque LAUNCH Creader 3001 (Édition 2026)"
-              data-model="LAUNCH Creader 3001"
+              data-name="LAUNCH Creader CR3001 (Édition 2026)"
+              data-model="LAUNCH Creader CR3001"
               data-price="39.90"
               data-image="images/OBD.png">
               <svg viewBox="0 0 24 24" aria-hidden="true">
@@ -348,6 +349,7 @@
         </div>
       </div>
     </section>
+    </div>
   </main>
 
   <footer class="site-footer">
@@ -407,9 +409,9 @@
   </aside>
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
-  <script src="js/cart.js?v=dual3"></script>
-  <script src="js/i18n.js?v=antipollution1"></script>
-  <script src="js/lang-menu.js?v=dual3"></script>
-  <script src="js/app.js?v=dual3" defer></script>
+  <script src="js/cart.js?v=fix5"></script>
+  <script src="js/i18n.js?v=fix5"></script>
+  <script src="js/lang-menu.js?v=fix5"></script>
+  <script src="js/app.js?v=fix5" defer></script>
 </body>
 </html>

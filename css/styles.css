@@ -481,14 +481,63 @@ button {
   box-shadow: -18px 0 28px 12px #0e1116;
 }
 
+.catalog-card.is-selected {
+  border-color: rgba(220, 38, 38, 0.7);
+  box-shadow: 0 0 0 1px rgba(220, 38, 38, 0.35);
+}
+
+#product-detail {
+  position: relative;
+}
+
+#product-detail > [data-product-panel] {
+  display: none !important;
+  pointer-events: none;
+}
+
+#product-detail > [data-product-panel].is-active {
+  display: block !important;
+  pointer-events: auto;
+}
+
+#product-detail > [data-product-panel].is-active .gallery {
+  position: sticky;
+}
+
+#product-detail > [data-product-panel]:not(.is-active) .gallery {
+  position: static;
+}
+
+#product-detail .product-info > * {
+  animation: none;
+}
+
+[data-product-panel][hidden] {
+  display: none !important;
+}
+
 .gallery-main img {
-  width: 104%;
-  max-width: none;
+  width: 100%;
+  max-width: 100%;
   height: 100%;
-  object-fit: cover;
-  object-position: left center;
+  object-fit: contain;
+  object-position: center;
   cursor: zoom-in;
   transition: opacity 0.35s ease, transform 0.5s ease;
+}
+
+.thumb::after {
+  display: none;
+}
+
+.thumb img {
+  width: 100%;
+  max-width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+  pointer-events: none;
+  background: #0e1116;
 }
 
 .gallery-main img.is-switching {
@@ -519,15 +568,6 @@ button {
   transition: border-color 0.2s, transform 0.2s;
 }
 
-.thumb::after {
-  content: "";
-  position: absolute;
-  inset: 0 0 0 auto;
-  width: 10%;
-  background: linear-gradient(90deg, transparent, #0e1116 70%);
-  pointer-events: none;
-}
-
 .gallery-badge {
   position: absolute;
   top: 1rem;
@@ -541,15 +581,6 @@ button {
   text-transform: uppercase;
   padding: 0.4rem 0.75rem;
   border-radius: 6px;
-}
-
-.thumb img {
-  width: 110%;
-  max-width: none;
-  height: 100%;
-  object-fit: cover;
-  object-position: left center;
-  pointer-events: none;
 }
 
 .thumb:hover {
