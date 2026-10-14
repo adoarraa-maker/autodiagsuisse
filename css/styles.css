@@ -936,6 +936,30 @@ button {
   box-shadow: 0 0 0 3px rgba(31, 157, 85, 0.25);
 }
 
+.stock.is-out {
+  color: #ff8a80;
+}
+
+.stock.is-out::before {
+  background: #ff8a80;
+  box-shadow: 0 0 0 3px rgba(255, 138, 128, 0.25);
+}
+
+.catalog-card-badge.is-out,
+.gallery-badge.is-out {
+  background: #6b7280;
+}
+
+.add-to-cart:disabled,
+.add-to-cart:disabled:hover,
+.add-to-cart:disabled:active {
+  background: #6b7280;
+  box-shadow: none;
+  cursor: not-allowed;
+  filter: none;
+  transform: none;
+}
+
 .price-block {
   display: flex;
   flex-direction: column;

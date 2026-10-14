@@ -15,16 +15,10 @@ const Stripe = require("stripe");
 /** Catalogue autorisé — source de vérité des prix (centimes) */
 const CATALOG = {
   "launch-creader-cr300": {
-    name: "Scanner Compact Launch Creader CR3001",
-    unitAmount: 3990,
+    name: "Scanner Compact Launch Creader CR300",
+    unitAmount: 4500,
     currency: "chf",
     imagePath: "/Autodiasuisse1.png",
-  },
-  "launch-creader-3001": {
-    name: "LAUNCH Creader CR3001 (Édition 2026)",
-    unitAmount: 3990,
-    currency: "chf",
-    imagePath: "/images/OBD.png",
   },
 };
 

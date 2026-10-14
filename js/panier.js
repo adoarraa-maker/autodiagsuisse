@@ -7,9 +7,9 @@
  * 3) Après paiement → webhook → e-mail avec adresse à ORDER_NOTIFY_EMAIL
  */
 try {
-  if (localStorage.getItem("ads_purged_v5") !== "1") {
+  if (localStorage.getItem("ads_purged_v6") !== "1") {
     localStorage.clear();
-    localStorage.setItem("ads_purged_v5", "1");
+    localStorage.setItem("ads_purged_v6", "1");
   }
 } catch (e) {}
 
@@ -18,20 +18,20 @@ try {
 
   /** Payment Links Stripe — utilisés dès qu’un seul produit est dans le panier. */
   const STRIPE_PAYMENT_LINKS = {
-    "launch-creader-cr300": "https://buy.stripe.com/7sY14n4SAgJaaR41Kg2kw02",
-    "launch-creader-3001": "https://buy.stripe.com/3cT6oll30w10g4sG1Kg2kw01",
+    "launch-creader-cr300": "https://buy.stripe.com/fZufZhbgY2Sk2kydsY2kw03",
   };
+  const UNAVAILABLE_IDS = new Set(["launch-creader-3001"]);
   const PRODUCT_CATALOG = [
     {
       id: "launch-creader-cr300",
-      name: "Scanner Compact Launch Creader CR3001",
-      price: 39.9,
+      name: "Scanner Compact Launch Creader CR300",
+      price: 45,
       image: "Autodiasuisse1.png",
     },
     {
       id: "launch-creader-3001",
       name: "LAUNCH Creader CR3001 (Édition 2026)",
-      price: 39.9,
+      price: 45,
       image: "images/OBD.png",
     },
   ];
@@ -157,7 +157,9 @@ try {
 
     if (crossSellEl && crossSellItemsEl) {
       const inCart = new Set(items.map((item) => item.id));
-      const suggestions = PRODUCT_CATALOG.filter((product) => !inCart.has(product.id));
+      const suggestions = PRODUCT_CATALOG.filter(
+        (product) => !inCart.has(product.id) && !UNAVAILABLE_IDS.has(product.id)
+      );
       crossSellEl.hidden = suggestions.length === 0;
       crossSellItemsEl.innerHTML = suggestions
         .map(
@@ -217,7 +219,7 @@ try {
       const product = PRODUCT_CATALOG.find(
         (entry) => entry.id === button.dataset.crossSellId
       );
-      if (!product) return;
+      if (!product || UNAVAILABLE_IDS.has(product.id)) return;
 
       AutoDiagCart.add(product, 1);
       render();
@@ -262,6 +264,10 @@ try {
   async function startCheckout() {
     const Cart = window.AutoDiagCart;
     if (!Cart) return;
+
+    Cart.getItems()
+      .filter((item) => UNAVAILABLE_IDS.has(item.id))
+      .forEach((item) => Cart.remove(item.id));
 
     const items = Cart.getItems();
     if (!items.length) {
@@ -321,6 +327,11 @@ try {
   }
 
   function init() {
+    if (window.AutoDiagCart) {
+      AutoDiagCart.getItems()
+        .filter((item) => UNAVAILABLE_IDS.has(item.id))
+        .forEach((item) => AutoDiagCart.remove(item.id));
+    }
     bindList();
     bindCrossSell();
     render();

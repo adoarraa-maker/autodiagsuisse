@@ -2,9 +2,9 @@
  * AutoDia Suisse — galeries produit, zoom et ajout panier
  */
 try {
-  if (localStorage.getItem("ads_purged_v5") !== "1") {
+  if (localStorage.getItem("ads_purged_v6") !== "1") {
     localStorage.clear();
-    localStorage.setItem("ads_purged_v5", "1");
+    localStorage.setItem("ads_purged_v6", "1");
   }
 } catch (e) {}
 
@@ -14,17 +14,18 @@ try {
   const toast = document.getElementById("toast");
   const lightbox = document.getElementById("image-lightbox");
   const lightboxImage = document.getElementById("lightbox-image");
+  const UNAVAILABLE_IDS = new Set(["launch-creader-3001"]);
   const PRODUCT_CATALOG = [
     {
       id: "launch-creader-cr300",
-      name: "Scanner Compact Launch Creader CR3001",
-      price: "39.90",
+      name: "Scanner Compact Launch Creader CR300",
+      price: "45.00",
       image: "Autodiasuisse1.png",
     },
     {
       id: "launch-creader-3001",
       name: "LAUNCH Creader CR3001 (Édition 2026)",
-      price: "39.90",
+      price: "45.00",
       image: "images/OBD.png",
     },
   ];
@@ -251,7 +252,7 @@ try {
 
       const itemIds = new Set(items.map((item) => item.id));
       const suggestedProducts = PRODUCT_CATALOG.filter(
-        (product) => !itemIds.has(product.id)
+        (product) => !itemIds.has(product.id) && !UNAVAILABLE_IDS.has(product.id)
       );
       recommendations.hidden = suggestedProducts.length === 0;
       recommendationItems.innerHTML = suggestedProducts
@@ -297,7 +298,7 @@ try {
         const product = PRODUCT_CATALOG.find(
           (entry) => entry.id === suggestionBtn.dataset.suggestedProduct
         );
-        if (!product) return;
+        if (!product || UNAVAILABLE_IDS.has(product.id)) return;
         AutoDiagCart.add(product, 1);
         AutoDiagCart.updateBadge();
         render();
@@ -328,7 +329,8 @@ try {
   function initAddToCart(drawer) {
     document.addEventListener("click", (event) => {
       const addBtn = event.target.closest("[data-add-to-cart], .add-to-cart");
-      if (!addBtn || !window.AutoDiagCart) return;
+      if (!addBtn || addBtn.disabled || !window.AutoDiagCart) return;
+      if (UNAVAILABLE_IDS.has(addBtn.dataset.id)) return;
 
       const card = addBtn.closest("[data-product-card], .product");
       const qty = clampQty(card?.querySelector("[data-qty], #qty")?.value);
@@ -457,6 +459,11 @@ try {
   }
 
   function init() {
+    if (window.AutoDiagCart) {
+      AutoDiagCart.getItems()
+        .filter((item) => UNAVAILABLE_IDS.has(item.id))
+        .forEach((item) => AutoDiagCart.remove(item.id));
+    }
     const galleries = document.querySelectorAll("[data-gallery]");
     (galleries.length ? galleries : document.querySelectorAll(".gallery")).forEach(initGallery);
 
